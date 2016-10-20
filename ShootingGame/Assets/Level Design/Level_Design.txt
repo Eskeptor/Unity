@@ -1,0 +1,5 @@
+@골뱅이는 주석처리됨
+@max_enemy	enemy_count
+7	5
+7	6
+7	7
