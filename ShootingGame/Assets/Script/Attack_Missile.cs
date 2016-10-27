@@ -1,16 +1,16 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class Attack_Missile : MonoBehaviour {
     public float FireSpeed = 0.2f;
     public float DestroyMissileZpos = 10f;
     public int MissilePoolCount = 20;
-    public GameObject Missile;
-    public Transform FireMissileRightLocation;
-    public Transform FireMissileLeftLocation;
-    public AudioSource MissileFire;
+    public GameObject Missile = null;
+    public Transform FireMissileRightLocation = null;
+    public Transform FireMissileLeftLocation = null;
+    public AudioSource MissileFire = null;
 
     private bool Gun_Fire_State = true;
+    private bool Deadcheck;
 
     MemoryPool pool = new MemoryPool();
 
@@ -35,12 +35,18 @@ public class Attack_Missile : MonoBehaviour {
             missile_left[i] = null;
             missile_right[i] = null;
         }
+        Deadcheck = GameObject.Find("Player").GetComponent<Player_Move>().Deadcheck;
     }
     void Update () {
-        // 공격했을 때
-        if (!Attack())
+        Deadcheck = GameObject.Find("Player").GetComponent<Player_Move>().Deadcheck;
+
+        if (!Deadcheck)
         {
-            return;
+            // 공격했을 때
+            if (!Attack())
+            {
+                return;
+            }
         }
 	}
 

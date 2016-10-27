@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
-using System;
 
 public class Start_Event : MonoBehaviour {
     public GameObject RestartMenu = null;
     public GameObject Player = null;
     public Text ScoreText = null;
-    public Text HPText = null;
+    //public Text HPText = null;
+    public Slider HPSlider = null;
+    public Image DamageImage = null;
     public int MaxScore = 0;
 
     int score = 0;
@@ -30,6 +30,10 @@ public class Start_Event : MonoBehaviour {
         PlayerPrefs.HasKey("Score");
         MaxScore = PlayerPrefs.GetInt("Score");
         PlayerPrefs.Save();
+        if(HPSlider.value == 0)
+        {
+            DamageImage.color = Color.Lerp(DamageImage.color, Color.black, 0.1f);
+        }
     }
     public void Score_Manager(int add)
     {
@@ -40,6 +44,7 @@ public class Start_Event : MonoBehaviour {
     }
     public void HP_Manager(int min)
     {
-        HPText.text = "HP : " + min.ToString();
+        HPSlider.value = min;
+        //HPText.text = "HP : " + min.ToString();
     }
 }

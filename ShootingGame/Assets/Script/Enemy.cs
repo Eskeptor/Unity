@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class Enemy : MonoBehaviour {
     public int Enemy1Count = 10;
@@ -65,7 +64,7 @@ public class Enemy : MonoBehaviour {
                 if(enemy1[i] == null)
                 {
                     enemy1[i] = enemy1_pool.NewItem();
-                    enemy1[i].transform.position = new Vector3(Random.Range(-EnemySpawnMaxXpos, EnemySpawnMaxXpos), this.Player.transform.position.y + 0.3f, 9.5f);
+                    enemy1[i].transform.position = new Vector3(Random.Range(-EnemySpawnMaxXpos, EnemySpawnMaxXpos), this.Player.transform.position.y + 0.3f, 8f);
                 }
             }
             enemy_State = false;

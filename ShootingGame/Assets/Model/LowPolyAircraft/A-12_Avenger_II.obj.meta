@@ -1,0 +1,153 @@
+fileFormatVersion: 2
+guid: 33e466311a91eb94c9e59e3b73eb37fd
+timeCreated: 1477560923
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: AileronL01
+    100004: AileronR01
+    100006: BrakeL01
+    100008: BrakeR01
+    100010: Canopy01
+    100012: Eject_Seat01
+    100014: Eject_Seat02
+    100016: ElevatorL01
+    100018: EngineL01
+    100020: Glass_Canopy01
+    100022: Glass_HUD
+    100024: LOD0
+    100026: Pilot01
+    100028: Pilot02
+    100030: x_BombBayL01
+    100032: x_BombBayR01
+    400000: //RootNode
+    400002: AileronL01
+    400004: AileronR01
+    400006: BrakeL01
+    400008: BrakeR01
+    400010: Canopy01
+    400012: Eject_Seat01
+    400014: Eject_Seat02
+    400016: ElevatorL01
+    400018: EngineL01
+    400020: Glass_Canopy01
+    400022: Glass_HUD
+    400024: LOD0
+    400026: Pilot01
+    400028: Pilot02
+    400030: x_BombBayL01
+    400032: x_BombBayR01
+    2300000: AileronL01
+    2300002: AileronR01
+    2300004: BrakeL01
+    2300006: BrakeR01
+    2300008: Canopy01
+    2300010: Eject_Seat01
+    2300012: Eject_Seat02
+    2300014: ElevatorL01
+    2300016: EngineL01
+    2300018: Glass_Canopy01
+    2300020: Glass_HUD
+    2300022: LOD0
+    2300024: Pilot01
+    2300026: Pilot02
+    2300028: x_BombBayL01
+    2300030: x_BombBayR01
+    3300000: AileronL01
+    3300002: AileronR01
+    3300004: BrakeL01
+    3300006: BrakeR01
+    3300008: Canopy01
+    3300010: Eject_Seat01
+    3300012: Eject_Seat02
+    3300014: ElevatorL01
+    3300016: EngineL01
+    3300018: Glass_Canopy01
+    3300020: Glass_HUD
+    3300022: LOD0
+    3300024: Pilot01
+    3300026: Pilot02
+    3300028: x_BombBayL01
+    3300030: x_BombBayR01
+    4300000: AileronL01
+    4300002: AileronR01
+    4300004: BrakeL01
+    4300006: BrakeR01
+    4300008: Canopy01
+    4300010: Eject_Seat01
+    4300012: Eject_Seat02
+    4300014: ElevatorL01
+    4300016: EngineL01
+    4300018: Glass_Canopy01
+    4300020: Glass_HUD
+    4300022: LOD0
+    4300024: Pilot01
+    4300026: Pilot02
+    4300028: x_BombBayL01
+    4300030: x_BombBayR01
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

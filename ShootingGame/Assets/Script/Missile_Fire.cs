@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class Missile_Fire : MonoBehaviour {
     public float MissileSpeed = 20f;

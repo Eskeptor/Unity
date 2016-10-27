@@ -1,33 +1,50 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player_Move : MonoBehaviour {
     public float CharacterMoveSpeed = 0.5f;
     public float MoveMaxXpos = 3f;
     public float MoveMaxZpos = 8.5f;
     public float MoveMinZpos = -0.6f;
-    public int HP = 100;
     public int Damage = 15;
     public ParticleSystem DeathParticle = null;
     public Start_Event HpManager = null;
+    public Image DamageImage = null;
+
+    [HideInInspector]
+    public bool Deadcheck;
+    [HideInInspector]
+    public int HP = 100;
+
+    private Color FlashColor = new Color(1f, 0f, 0f, 0.4f);
+    [HideInInspector]
+    public float FlashSpeed = 5f;
+
+    void Start()
+    {
+        Deadcheck = false;
+    }
 
     void Update () {
-        
-        if (!MoveCharacter())
-        {
-            return;
-        }
-        if (!MoveCondition())
-        {
-            return;
-        }
-        if(HP == 0)
+        DamageImage.color = Color.Lerp(DamageImage.color, Color.clear, FlashSpeed * Time.deltaTime);
+        if (HP == 0)
         {
             Instantiate(DeathParticle, this.transform.position, this.transform.rotation);
             this.GetComponent<Collider>().enabled = false;
             this.gameObject.SetActive(false);
             Debug.Log("게임오버");
+        }
+        else
+        {
+            if (!MoveCharacter())
+            {
+                return;
+            }
+            if (!MoveCondition())
+            {
+                return;
+            }
         }
 	}
     void OnCollisionEnter(Collision col)
@@ -35,6 +52,7 @@ public class Player_Move : MonoBehaviour {
         if(col.collider.tag == "Enemy" || col.collider.tag == "Enemy Missile")
         {
             HP -= Damage;
+            DamageImage.color = FlashColor;
             if (HP <= 0)
             {
                 HP = 0;
@@ -63,10 +81,6 @@ public class Player_Move : MonoBehaviour {
         {
             this.transform.Translate(new Vector3(1, 0, 0) * CharacterMoveSpeed * Time.deltaTime);
         }
-        //if(this.transform.position.x < -5f || this.transform.position.x > 5f)
-        //{
-        //    this.transform.Translate(new Vector3(0, 0, 0));
-        //}
         if (Input.GetKey(KeyCode.R))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -98,19 +112,3 @@ public class Player_Move : MonoBehaviour {
         return true;
     }
 }
-/* 모바일 버전
-Rigidbody Player;
-void Start()
-{
-    Player = this.GetComponent<Rigidbody>();
-}
-
-void Update()
-{
-    Vector3 moveVec = new Vector3(CrossPlatformInputManager.GetAxis("Horizontal"), CrossPlatformInputManager.GetAxis("Vertical")) * CharacterMoveSpeed;
-    bool isFire = CrossPlatformInputManager.GetButton("FireButton");
-    Debug.Log(isFire ? "발사됨" : "발사안됨");
-    //Player.AddForce(moveVec);
-    this.transform.Translate(moveVec);
-}
-*/
