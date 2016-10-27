@@ -4,14 +4,13 @@ using UnityEngine.SceneManagement;
 
 public class Player_Move : MonoBehaviour {
     public float CharacterMoveSpeed = 0.5f;
-    public float MoveMaxXpos = 8.2f;
+    public float MoveMaxXpos = 3f;
     public float MoveMaxZpos = 8.5f;
     public float MoveMinZpos = -0.6f;
     public int HP = 100;
     public int Damage = 15;
     public ParticleSystem DeathParticle = null;
     public Start_Event HpManager = null;
-
 
     void Update () {
         
@@ -64,10 +63,10 @@ public class Player_Move : MonoBehaviour {
         {
             this.transform.Translate(new Vector3(1, 0, 0) * CharacterMoveSpeed * Time.deltaTime);
         }
-        if(this.transform.position.x < -5f || this.transform.position.x > 5f)
-        {
-            this.transform.Translate(new Vector3(0, 0, 0));
-        }
+        //if(this.transform.position.x < -5f || this.transform.position.x > 5f)
+        //{
+        //    this.transform.Translate(new Vector3(0, 0, 0));
+        //}
         if (Input.GetKey(KeyCode.R))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

@@ -5,46 +5,42 @@ public class Enemy : MonoBehaviour {
     public int Enemy1Count = 10;
     public int Missile1Count = 50;
     public float DestroyEnemyZpos = -1.8f;
-    public float EnemySpawnMaxXpos = 5f;
-    public float EnemySpawnMinXpos = -5f;
     public int Score = 0;
-    //public int Enemy2Count = 10;
+
     public GameObject EnemyObject1 = null;
-    //public GameObject EnemyObject2;
     public Player_Move Player = null;
     public Start_Event ScoreManager = null;
     public TextAsset LevelDataText = null;
 
     MemoryPool enemy1_pool = new MemoryPool();
-    //MemoryPool enemy2_pool = new MemoryPool(); 
     GameObject[] enemy1 = null;
-    //GameObject[] enemy2;
 
     private bool enemy_State;
     private int Enemy_Death_Counter;
     private int level = 0;
+    private float EnemySpawnMaxXpos = 0f;
 
     /* 프로그램 종료시 메모리 비움 */
     void OnApplicationQuit()
     {
         enemy1_pool.Dispose();
-        //enemy2_pool.Dispose();
     }
 
-    // 게임 실행과 동시에 적 생성
+    
     void Start () {
-
+        // 게임 실행과 동시에 적 생성
         enemy1_pool.Create(EnemyObject1, Enemy1Count);
-        //enemy2_pool.Create(EnemyObject2, Enemy2Count);
         enemy1 = new GameObject[Enemy1Count];
-        //enemy2 = new GameObject[Enemy2Count];
         enemy_State = true;
         for (int i = 0; i < enemy1.Length; i++)
         {
             enemy1[i] = null;
         }
+
         //데스카운터 초기화
         Enemy_Death_Counter = 0;
+
+        EnemySpawnMaxXpos = Player.MoveMaxXpos;
     }
 	
 	void Update () {
@@ -69,7 +65,7 @@ public class Enemy : MonoBehaviour {
                 if(enemy1[i] == null)
                 {
                     enemy1[i] = enemy1_pool.NewItem();
-                    enemy1[i].transform.position = new Vector3(Random.Range(EnemySpawnMinXpos, EnemySpawnMaxXpos), this.Player.transform.position.y + 0.3f, 9.5f);
+                    enemy1[i].transform.position = new Vector3(Random.Range(-EnemySpawnMaxXpos, EnemySpawnMaxXpos), this.Player.transform.position.y + 0.3f, 9.5f);
                 }
             }
             enemy_State = false;
