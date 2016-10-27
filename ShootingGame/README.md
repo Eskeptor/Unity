@@ -24,5 +24,10 @@ My School works project.
  R : Reset
  A : Fire
 ```
-##Good Bye!!
+## Source Copyright
+```
+ Graphic Sources : http://tf3dm.com/
+ Sound Sources : http://www.freesfx.co.uk/
+```
+## Good Bye!!
 Compiled by Unity Personal 5.4.0f and Visual Studio 2015 C#
