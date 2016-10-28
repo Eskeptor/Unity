@@ -1,0 +1,15 @@
+[Player Aircraft]
+Copyright by CristianIS
+(https://pixabay.com/ko/f22-%EB%9E%A9-%ED%84%B0-%EB%B9%84%ED%96%89%EA%B8%B0-%EC%8A%A4%ED%85%94%EC%8A%A4-%EA%B3%B5%EA%B8%B0-%ED%8C%8C%EC%9D%B4%ED%84%B0-%EC%A0%9C%ED%8A%B8%EA%B8%B0-%ED%95%AD%EA%B3%B5%EA%B8%B0-1594481/)
+
+[Player Missile]
+Copyright by OpenClipart-Vectors
+(https://pixabay.com/ko/%EA%B3%B5%EA%B8%B0-%EC%8B%B8%EC%9B%80-%EB%A7%88%EC%88%A0-%EB%AF%B8%EC%82%AC%EC%9D%BC-1293111/)
+
+[Enemy Aircraft]
+Copyright by skeeze
+(https://pixabay.com/ko/%EC%97%90%EC%96%B4%EC%87%BC-thunderbirds-%ED%98%95%EC%84%B1-%EA%B5%B0%EC%82%AC-%ED%95%AD%EA%B3%B5%EA%B8%B0-%EC%A0%9C%ED%8A%B8%EA%B8%B0-1100816/#_=_)
+
+[Background 1]
+Copyright by skeeze
+(https://pixabay.com/ko/%EB%82%98%EC%84%A0%ED%98%95-%ED%96%89%EC%84%B1%EC%83%81-%EC%84%B1%EC%9A%B4-%EC%84%B1%EC%9A%B4-%EC%9A%B0%EC%A3%BC-%ED%97%88%EB%B8%94-%EA%B0%A4%EB%9F%AD%EC%8B%9C-%EB%B3%84-%EA%B3%B5%EA%B0%84-1109044/)

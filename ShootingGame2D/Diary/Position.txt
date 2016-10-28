@@ -1,0 +1,4 @@
+Player Enabled Pos X : -3.05 ~ 3.05
+Player Enabled Pos Y : -0.76 ~ 7.84
+
+Explosion Pos Z : 7.0 ~ 8.0
