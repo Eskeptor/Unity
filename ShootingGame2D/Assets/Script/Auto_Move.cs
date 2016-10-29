@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Background_Move : MonoBehaviour {
+public class Auto_Move : MonoBehaviour {
+    public float AutoSpeed = 0.2f;
 
 	// Use this for initialization
 	void Start () {
@@ -10,6 +11,6 @@ public class Background_Move : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+        transform.Translate(0f, AutoSpeed * Time.deltaTime, 0f);
 	}
 }

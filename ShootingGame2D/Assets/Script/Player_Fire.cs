@@ -4,19 +4,19 @@ using System.Collections;
 public class Player_Fire : MonoBehaviour {
     public float FireDelay = 0.2f;  // Control fire cycle;
     public int MissileMaximumPool = 20; // Create Missile Memory Pool
-    public Transform RightMissileLocation = null;
-    public Transform LeftMissileLocation = null;
-    public AudioSource MissileSound = null;
-    public GameObject Missile = null;
+    public int Damage = 10;
+    public Transform RightMissileLocation;
+    public Transform LeftMissileLocation;
+    public AudioSource MissileSound;
+    public GameObject Missile;
 
-    private float DestroyMissileYpos = 10f; // When the missile reaches the coordinates, Return to memory
     private bool FireState; // for Control fire cycle;
     private bool DeadCheck; // Player Dead Check
     private MemoryPool MPool = new MemoryPool();
     private GameObject[] MissileLeft;
     private GameObject[] MissileRight;
 
-    // When application quit
+    // When application quit, Memory clear
     void OnApplicationQuit ()
     {
         MPool.Dispose();
@@ -31,6 +31,13 @@ public class Player_Fire : MonoBehaviour {
         MPool.Create(Missile, MissileMaximumPool);
         MissileLeft = new GameObject[MissileMaximumPool / 2];
         MissileRight = new GameObject[MissileMaximumPool / 2];
+        for(int i = 0; i < MissileMaximumPool / 2; i++)
+        {
+            MissileLeft[i] = null;
+            MissileRight[i] = null;
+        }
+
+        MissileSound.Stop();
     }
 	
 	// Update is called once per frame
@@ -77,39 +84,23 @@ public class Player_Fire : MonoBehaviour {
             // When left missile is enabled
             if (MissileLeft[i])
             {
-                // When the missile reaches the coordinates, Return to memory
-                if (MissileLeft[i].transform.position.y > DestroyMissileYpos)
-                {
-                    MPool.RemoveItem(MissileLeft[i]);
-                    MissileLeft[i] = null;
-                    Debug.Log("Player_Fire : 미사일이 범위를 벗어남");
-                }
                 // When missile hit something(The missile hits are Collider disabled)
-                else if (MissileLeft[i].GetComponent<Collider2D>().enabled == false)
+                if (MissileLeft[i].GetComponent<Collider2D>().enabled == false)
                 {
                     MissileLeft[i].GetComponent<Collider2D>().enabled = true;
                     MPool.RemoveItem(MissileLeft[i]);
                     MissileLeft[i] = null;
-                    Debug.Log("Player_Fire : 미사일이 적과 부딛힘");
                 }
             }
             // When right missile is enabled
             if (MissileRight[i])
             {
-                // When the missile reaches the coordinates, Return to memory
-                if (MissileRight[i].transform.position.y > DestroyMissileYpos)
-                {
-                    MPool.RemoveItem(MissileRight[i]);
-                    MissileRight[i] = null;
-                    Debug.Log("Player_Fire : 미사일이 범위를 벗어남");
-                }
                 // When missile hit something(The missile hits are Collider disabled)
-                else if (MissileRight[i].GetComponent<Collider2D>().enabled == false)
+                if (MissileRight[i].GetComponent<Collider2D>().enabled == false)
                 {
                     MissileRight[i].GetComponent<Collider2D>().enabled = true;
-                    MPool.RemoveItem(MissileLeft[i]);
+                    MPool.RemoveItem(MissileRight[i]);
                     MissileRight[i] = null;
-                    Debug.Log("Player_Fire : 미사일이 적과 부딛힘");
                 }
             }
         }
@@ -119,7 +110,7 @@ public class Player_Fire : MonoBehaviour {
     // Dead Check from Player Gameobject
     bool IsDead ()
     {
-        return GameObject.Find("Player").GetComponent<Player_Move>().DeadCheck;
+        return GameObject.Find("Aircraft Body").GetComponent<Player_Move>().Death;
     }
 
     // Fire Cycle Control

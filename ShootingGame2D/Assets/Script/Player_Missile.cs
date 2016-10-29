@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Missile_Move : MonoBehaviour {
+public class Player_Missile : MonoBehaviour {
     public float MoveSpeed = 20f;
-	
+
 	// Update is called once per frame
 	void Update () {
         Move();
@@ -22,6 +22,12 @@ public class Missile_Move : MonoBehaviour {
         {
             GetComponent<Collider2D>().enabled = false;
             Debug.Log("Missile_Move : 미사일이 적과 부딛힘");
+        }
+
+        // When missile hit top bar
+        if (col.GetComponent<Collider2D>().tag == "Sidebar")
+        {
+            GetComponent<Collider2D>().enabled = false;
         }
     }
 }

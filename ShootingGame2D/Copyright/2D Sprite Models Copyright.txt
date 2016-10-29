@@ -6,9 +6,13 @@ Copyright by CristianIS
 Copyright by OpenClipart-Vectors
 (https://pixabay.com/ko/%EA%B3%B5%EA%B8%B0-%EC%8B%B8%EC%9B%80-%EB%A7%88%EC%88%A0-%EB%AF%B8%EC%82%AC%EC%9D%BC-1293111/)
 
-[Enemy Aircraft]
+[Enemy Aircraft1]
 Copyright by skeeze
 (https://pixabay.com/ko/%EC%97%90%EC%96%B4%EC%87%BC-thunderbirds-%ED%98%95%EC%84%B1-%EA%B5%B0%EC%82%AC-%ED%95%AD%EA%B3%B5%EA%B8%B0-%EC%A0%9C%ED%8A%B8%EA%B8%B0-1100816/#_=_)
+
+[Enemy Aircraft2]
+Copyright by janjf93
+(https://pixabay.com/ko/%EB%A1%9C%EC%BC%93-%EC%9A%B0%EC%A3%BC-%EB%B9%84%ED%96%89%EC%82%AC-%EB%B2%A1%ED%84%B0-%EC%9A%B0%EC%A3%BC-%EC%97%AC%ED%96%89-ufo-%EB%AC%B8-%EA%B3%B5%EA%B0%84-%EC%8A%A4%ED%83%80-1717160/)
 
 [Background 1]
 Copyright by skeeze

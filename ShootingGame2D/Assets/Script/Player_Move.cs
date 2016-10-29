@@ -3,37 +3,32 @@ using System.Collections;
 
 public class Player_Move : MonoBehaviour {
     public float MoveSpeed = 3f;
-    public GameObject Explosion = null;
+    public GameObject Explosion;
+    public GameObject EventSP;
 
     [HideInInspector]
-    public bool DeadCheck;
+    public bool Death;
 
     private const float EnabledPosX = 3.05f;
-    private const float EnabledPosY_down = -0.76f;
-    private const float EnabledPosY_up = 7.84f;
 
 	// Use this for initialization
 	void Start () {
-        DeadCheck = false;
+        Death = false;
+        Explosion.SetActive(false);
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (!DeadCheck)
+        if (!Death)
         {
-            if (!Move())
-            {
-                return;
-            }
-            if (!Move_Limit())
-            {
-                return;
-            }
+            Move();
+            Move_Limit();
         }
-	}
+        DeadCheck();
+    }
 
     // Key Array
-    bool Move()
+    void Move()
     {
         if (Input.GetButton("Horizontal"))
         {
@@ -43,11 +38,10 @@ public class Player_Move : MonoBehaviour {
         {
             transform.Translate(0f, Input.GetAxis("Vertical") * MoveSpeed * Time.deltaTime, 0f);
         }
-        return true;
     }
 
     // Limit Position
-    bool Move_Limit()
+    void Move_Limit()
     {
         if (transform.position.x < -EnabledPosX)
         {
@@ -57,15 +51,6 @@ public class Player_Move : MonoBehaviour {
         {
             transform.position = new Vector3(EnabledPosX, transform.position.y, 0f);
         }
-        if (transform.position.y < EnabledPosY_down)
-        {
-            transform.position = new Vector3(transform.position.x, EnabledPosY_down, 0f);
-        }
-        if (transform.position.y > EnabledPosY_up)
-        {
-            transform.position = new Vector3(transform.position.x, EnabledPosY_up, 0f);
-        }
-        return true;
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -73,15 +58,26 @@ public class Player_Move : MonoBehaviour {
         if (col.GetComponent<Collider2D>().tag == "Enemy")
         {
             Debug.Log("Player_Move : 적과 부딛힘");
-            DeadCheck = true;
-            Explosion.SetActive(true);
-            Invoke("Dead", 2f);
+        }
+        if(col.GetComponent<Collider2D>().tag=="Enemy Missile")
+        {
+            EventSP.GetComponent<Event_ScoreHP>().hp -= 30;
+            Debug.Log("Player_Move : 적 미사일과 부딛힘");
         }
     }
 
     void Dead()
     {
         gameObject.SetActive(false);
-        
+    }
+
+    void DeadCheck()
+    {
+        if (EventSP.GetComponent<Event_ScoreHP>().hp <= 0)
+        {
+            Death = true;
+            Explosion.SetActive(true);
+            Invoke("Dead", 2f);
+        }
     }
 }
