@@ -1,5 +1,5 @@
 # Welcome to my "Shooting Game Project(using C#)"
-## About this project
+## About this project[Stopped Project]
 My School works project.
 ## What's New?
 ```
