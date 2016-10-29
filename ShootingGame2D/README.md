@@ -1,7 +1,7 @@
 # Welcome to my "2D Shooting Game Project(using C#)"
 ## About this project
 My School works project.
-## What's New? (Last update 10.29)
+## What's New? (Last updated 10.29)
 ```
  1) Add Particle Effect for when enemy death
  2) Change the enemy create method(Memory pooling -> Pre-generated)
