@@ -1,19 +1,20 @@
 # Welcome to my "2D Shooting Game Project(using C#)"
 ## About this project
 My School works project.
-## What's New?
+## What's New? (Last update 10.29)
 ```
- 1) 3D -> 2D converting
- 2) Change all models
- 3) Change all codes
- 4) Add Effect for when player die
- 5) Add Background(and move)
+ 1) Add Particle Effect for when enemy death
+ 2) Change the enemy create method(Memory pooling -> Pre-generated)
+ 3) Add Enemy's missile
+ 4) Change all source code
+ 5) Fix collision bug
+ 6) Add Simple Score and HP UI
 ```
 ## Next Updates
 ```
- 1) Add Particle Effect for when enemy death(use Memory Pooling)
- 2) Implement game level design(use text file)
- 3) Optimize all codes
+ 1) Implement game level design
+ 2) Optimize all codes
+ 3) All Menu
 ```
 ## Key Manual
 ```
