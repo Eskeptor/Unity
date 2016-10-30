@@ -19,6 +19,7 @@ public class Event_ScoreHP : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        Screen.SetResolution(400, 600, false);
         score = 0;
         hp = 90;
         check = false;

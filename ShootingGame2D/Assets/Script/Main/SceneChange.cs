@@ -9,6 +9,7 @@ public class SceneChange : MonoBehaviour {
 
     void Start()
     {
+        Screen.SetResolution(400, 600, false);
         HowTo.SetBool("CloseDown", false);
         HowTo.SetBool("ButtonDown", false);
     }
