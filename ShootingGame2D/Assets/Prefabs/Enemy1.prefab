@@ -260,8 +260,8 @@ MonoBehaviour:
   MissileObject: {fileID: 1000011520069198, guid: 7bfafcc160041b542b44bd31efa3c0bf,
     type: 2}
   MissileLocation: {fileID: 4000010551718164}
-  MissileMaximumPool: 5
-  FireCycleTime: 1
+  MissileMaximumPool: 4
+  FireCycleTime: 1.2
 --- !u!114 &114000012230410552
 MonoBehaviour:
   m_ObjectHideFlags: 1

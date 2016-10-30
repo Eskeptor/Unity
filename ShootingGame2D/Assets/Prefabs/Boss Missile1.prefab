@@ -39,7 +39,7 @@ GameObject:
   - 50: {fileID: 50000010930867694}
   - 114: {fileID: 114000013277881248}
   m_Layer: 0
-  m_Name: Enemy Missile
+  m_Name: Boss Missile1
   m_TagString: Enemy Missile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f0ae5fc57e4f6e4cbe464a4047b9bab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 6
+  MoveSpeed: 7
 --- !u!212 &212000013267948542
 SpriteRenderer:
   m_ObjectHideFlags: 1

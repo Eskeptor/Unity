@@ -1,3 +1,7 @@
+[Main Image]
+Copyright by Yuri_B
+(https://pixabay.com/ko/%EA%B3%B5%EA%B0%84-%EC%9D%80%ED%95%98-%ED%96%89%EC%84%B1-%EC%9A%B0%EC%A3%BC-%EC%BD%94%EC%8A%A4%EB%AA%A8%EC%8A%A4-%EB%B0%B0%EA%B2%BD-1569133/)
+
 [Player Aircraft]
 Copyright by CristianIS
 (https://pixabay.com/ko/f22-%EB%9E%A9-%ED%84%B0-%EB%B9%84%ED%96%89%EA%B8%B0-%EC%8A%A4%ED%85%94%EC%8A%A4-%EA%B3%B5%EA%B8%B0-%ED%8C%8C%EC%9D%B4%ED%84%B0-%EC%A0%9C%ED%8A%B8%EA%B8%B0-%ED%95%AD%EA%B3%B5%EA%B8%B0-1594481/)
@@ -13,6 +17,18 @@ Copyright by skeeze
 [Enemy Aircraft2]
 Copyright by janjf93
 (https://pixabay.com/ko/%EB%A1%9C%EC%BC%93-%EC%9A%B0%EC%A3%BC-%EB%B9%84%ED%96%89%EC%82%AC-%EB%B2%A1%ED%84%B0-%EC%9A%B0%EC%A3%BC-%EC%97%AC%ED%96%89-ufo-%EB%AC%B8-%EA%B3%B5%EA%B0%84-%EC%8A%A4%ED%83%80-1717160/)
+
+[Enemy Aircraft3]
+Copyright by OpenClipart-Vectors
+(https://pixabay.com/ko/%EA%B0%A4%EB%9F%AD%EC%8B%9C-%EA%B3%B5%EA%B0%84-%EC%9A%B0%EC%A3%BC%EC%84%A0-%EC%9A%B0%EC%A3%BC-%EC%97%AC%ED%96%89-%EC%9A%B0%EC%A3%BC-%EC%99%95%EB%B3%B5%EC%84%A0-157046/)
+
+[Enemy Missile2]
+Copyright by OpenClipart-Vectors
+(https://pixabay.com/ko/%EA%B0%A4%EB%9F%AD%EC%8B%9C-%EB%A7%88%EB%B2%95%EC%9D%98-%EB%AA%A8%ED%97%98-%EB%82%98%EC%84%A0-%EC%86%8C%EC%9A%A9%EB%8F%8C%EC%9D%B4-1294347/)
+
+[Enemy Missile3]
+Copyright by Clovis_Cheminot
+(https://pixabay.com/ko/%EC%83%A4%EB%B8%8C%EB%A0%88-%EB%A0%88%EC%9D%B4%EC%A0%80-%EA%B7%B8%EB%A6%B0-%EB%B3%84%EC%9D%80-%EC%A0%84%EC%9F%81-%ED%95%9C%EB%8B%A4-%EB%A3%A8%ED%81%AC-%EC%8A%A4%EC%B9%B4%EC%9D%B4-%EC%9B%8C%EC%BB%A4-1087861/)
 
 [Background 1]
 Copyright by skeeze

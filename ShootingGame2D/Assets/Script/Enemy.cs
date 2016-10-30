@@ -1,13 +1,5 @@
 ﻿using UnityEngine;
 
-// Constant Class
-static class Constant
-{
-    public const float MAX_XPOS = 3.33f;
-    public const float MAX_YPOS_UP = 8.28f;
-    public const float MAX_YPOS_DOWN = -2f;
-}
-
 public class Enemy : MonoBehaviour {
     public GameObject Explosion;
     public GameObject MissileObject;
@@ -17,8 +9,10 @@ public class Enemy : MonoBehaviour {
 
     private bool FireEnabled;   // By measuring the distance to fire a missile
     private bool FireState;     // for Fire cycle control
+    private bool Score;
     private GameObject Player;
     private GameObject EventSP;
+    private GameObject DownShift;
     MemoryPool MPool = new MemoryPool();
     private GameObject[] Missile;
 
@@ -32,6 +26,7 @@ public class Enemy : MonoBehaviour {
     void Start () {
         Player = GameObject.Find("Aircraft Body");
         EventSP = GameObject.Find("ScoreHP Event");
+        DownShift = GameObject.Find("DownShift");
 
         // Create Missile
         MPool.Create(MissileObject, MissileMaximumPool);
@@ -43,6 +38,7 @@ public class Enemy : MonoBehaviour {
 
         FireState = true;
         FireEnabled = false;
+        Score = true;
     }
 	
 	// Update is called once per frame
@@ -58,15 +54,13 @@ public class Enemy : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.GetComponent<Collider2D>().tag == "Player")
-        {
-            EventSP.GetComponent<Event_ScoreHP>().AddScore(GetComponent<Enemy_Info>().Score);
+        {            
             GetComponent<Enemy_Info>().HP -= Player.GetComponent<Player_Fire>().Damage;
             EventSP.GetComponent<Event_ScoreHP>().MinHP(50);
             Debug.Log("Enemy_Move : 플레이어와 부딛힘");
         }
         else if (col.GetComponent<Collider2D>().tag == "Missile")
         {
-            EventSP.GetComponent<Event_ScoreHP>().AddScore(GetComponent<Enemy_Info>().Score);
             GetComponent<Enemy_Info>().HP -= Player.GetComponent<Player_Fire>().Damage;
             Debug.Log("Enemy_Move : 미사일과 부딛힘");
         }
@@ -75,6 +69,18 @@ public class Enemy : MonoBehaviour {
     // When enemy is down, deactivate object(not destroy)
     void Dead()
     {
+        for (int i = 0; i < MissileMaximumPool; i++)
+        {
+            if (Missile[i])
+            {
+                if(Missile[i].GetComponent<Collider2D>().enabled == false)
+                {
+                    Missile[i].GetComponent<Collider2D>().enabled = true;
+                    MPool.RemoveItem(Missile[i]);
+                    Missile[i] = null;
+                }
+            }
+        }
         gameObject.SetActive(false);
     }
 
@@ -83,8 +89,13 @@ public class Enemy : MonoBehaviour {
     {
         if (GetComponent<Enemy_Info>().HP <= 0)
         {
-            
+            if (Score)
+            {
+                EventSP.GetComponent<Event_ScoreHP>().AddScore(GetComponent<Enemy_Info>().Score);
+                Score = false;
+            }
             Explosion.SetActive(true);
+            FireEnabled = false;
             Invoke("Dead", 1f);
         }
     }
@@ -92,7 +103,7 @@ public class Enemy : MonoBehaviour {
     // Distance check between player and enemy
     void DistanceChecker()
     {
-        if(transform.position.y-Player.transform.position.y < Constant.MAX_YPOS_UP)
+        if(transform.position.y-DownShift.transform.position.y < Constant.MAX_YPOS_UP)
         {
             FireEnabled = true;
         }
