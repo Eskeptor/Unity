@@ -1,20 +1,20 @@
 # Welcome to my "2D Shooting Game Project(using C#)"
 ## About this project
 My School works project.
-## What's New? (Last updated 10.29)
+## What's New? (Last updated 2016.11.3)
 ```
- 1) Add Particle Effect for when enemy death
- 2) Change the enemy create method(Memory pooling -> Pre-generated)
- 3) Add Enemy's missile
- 4) Change all source code
- 5) Fix collision bug
- 6) Add Simple Score and HP UI
+ 1) Implement game level1 design
+ 2) Implement openning scene
+ 3) Implement main menu
+ 4) Add audio source for enemy death
+ 5) Add background music
+ 6) Fix score bug(when boss death)
 ```
 ## Next Updates
 ```
- 1) Implement game level design
+ 1) Implement another game level design
  2) Optimize all codes
- 3) All Menu
+ 3) Add weapon type
 ```
 ## Key Manual
 ```
