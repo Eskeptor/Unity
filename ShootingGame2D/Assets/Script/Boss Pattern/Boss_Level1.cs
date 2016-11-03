@@ -16,6 +16,7 @@ public class Boss_Level1 : MonoBehaviour {
 
     private bool FireEnabled;   // By measuring the distance to fire a missile
     private bool FireState;     // for Fire cycle control
+    private bool Score;
     private GameObject Player;
     private GameObject EventSP;
     private GameObject DownShift;
@@ -58,6 +59,8 @@ public class Boss_Level1 : MonoBehaviour {
             Missile2[i] = null;
             Missile3[i] = null;
         }
+
+        GetComponent<AudioSource>().Stop();
 
         FireState = true;
         FireEnabled = false;
@@ -126,7 +129,12 @@ public class Boss_Level1 : MonoBehaviour {
     {
         if (GetComponent<Enemy_Info>().HP <= 0)
         {
-            EventSP.GetComponent<Event_ScoreHP>().AddScore(GetComponent<Enemy_Info>().Score);
+            GetComponent<AudioSource>().Play();
+            if (Score)
+            {
+                EventSP.GetComponent<Event_ScoreHP>().AddScore(GetComponent<Enemy_Info>().Score);
+                Score = false;
+            }
             FireEnabled = false;
             Explosion1.SetActive(true);
             Explosion2.SetActive(true);

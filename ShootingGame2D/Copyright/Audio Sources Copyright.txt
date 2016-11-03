@@ -1,0 +1,15 @@
+[MissileFire]
+Original : Space Battle Ambience
+link : http://www.freesfx.co.uk/soundeffects/battles/
+
+[Openning_BGM]
+Original : Falling Angel
+link : http://www.freesfx.co.uk/soundeffects/horror/
+
+[Enemy_Explosion]
+Original : Plastic Explosion with Charge
+link : http://www.freesfx.co.uk/soundeffects/bombs/
+
+[Level01_BGM]
+Original : Mysterious Floating
+link : http://www.freesfx.co.uk/soundeffects/mysterious/

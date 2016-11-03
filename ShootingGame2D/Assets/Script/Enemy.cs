@@ -39,6 +39,7 @@ public class Enemy : MonoBehaviour {
         FireState = true;
         FireEnabled = false;
         Score = true;
+        GetComponent<AudioSource>().Stop();
     }
 	
 	// Update is called once per frame
@@ -91,6 +92,7 @@ public class Enemy : MonoBehaviour {
         {
             if (Score)
             {
+                GetComponent<AudioSource>().Play();
                 EventSP.GetComponent<Event_ScoreHP>().AddScore(GetComponent<Enemy_Info>().Score);
                 Score = false;
             }
