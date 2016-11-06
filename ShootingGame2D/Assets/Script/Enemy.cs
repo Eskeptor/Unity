@@ -57,13 +57,20 @@ public class Enemy : MonoBehaviour {
         if (col.GetComponent<Collider2D>().tag == "Player")
         {            
             GetComponent<Enemy_Info>().HP -= Player.GetComponent<Player_Fire>().Damage;
-            EventSP.GetComponent<Event_ScoreHP>().MinHP(50);
-            Debug.Log("Enemy_Move : 플레이어와 부딛힘");
+            if (GetComponent<Enemy_Info>().HP < 0)
+            {
+                GetComponent<Enemy_Info>().HP = 0;
+            }
+            //Debug.Log("Enemy_Move : 플레이어와 부딛힘");
         }
         else if (col.GetComponent<Collider2D>().tag == "Missile")
         {
             GetComponent<Enemy_Info>().HP -= Player.GetComponent<Player_Fire>().Damage;
-            Debug.Log("Enemy_Move : 미사일과 부딛힘");
+            if (GetComponent<Enemy_Info>().HP < 0)
+            {
+                GetComponent<Enemy_Info>().HP = 0;
+            }
+            //Debug.Log("Enemy_Move : 미사일과 부딛힘");
         }
     }
 
@@ -88,16 +95,16 @@ public class Enemy : MonoBehaviour {
     // Dead checker
     void IsDead()
     {
-        if (GetComponent<Enemy_Info>().HP <= 0)
+        if (GetComponent<Enemy_Info>().HP == 0)
         {
             if (Score)
             {
+                FireEnabled = false;
                 GetComponent<AudioSource>().Play();
                 EventSP.GetComponent<Event_ScoreHP>().AddScore(GetComponent<Enemy_Info>().Score);
                 Score = false;
             }
             Explosion.SetActive(true);
-            FireEnabled = false;
             Invoke("Dead", 1f);
         }
     }
@@ -107,7 +114,14 @@ public class Enemy : MonoBehaviour {
     {
         if(transform.position.y-DownShift.transform.position.y < Constant.MAX_YPOS_UP)
         {
-            FireEnabled = true;
+            if(GetComponent<Enemy_Info>().HP != 0)
+            {
+                FireEnabled = true;
+            }
+        }
+        if (Player_Data.HP == 0)
+        {
+            FireEnabled = false;
         }
     }
 

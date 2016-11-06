@@ -108,7 +108,7 @@ GameObject:
   - 82: {fileID: 82000011500185940}
   m_Layer: 0
   m_Name: Level1 Boss
-  m_TagString: Enemy
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -207,7 +207,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012372292452}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 0.12865, y: 20.23, z: 0}
+  m_LocalPosition: {x: 0.01, y: 20.5, z: 0}
   m_LocalScale: {x: 0.45486248, y: 0.45486248, z: 0.45486248}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_Children:
@@ -455,7 +455,7 @@ AudioSource:
   Spatialize: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 10
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -579,6 +579,7 @@ MonoBehaviour:
   MissileLocation4: {fileID: 4000013064129532}
   MissileMaximumPool: 4
   FireCycleTime: 1
+  FireEnabled: 0
 --- !u!114 &114000011835452468
 MonoBehaviour:
   m_ObjectHideFlags: 1

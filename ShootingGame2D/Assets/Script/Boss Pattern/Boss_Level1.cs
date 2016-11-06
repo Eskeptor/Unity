@@ -60,8 +60,8 @@ public class Boss_Level1 : MonoBehaviour {
             Missile3[i] = null;
         }
 
-        GetComponent<AudioSource>().Stop();
-
+        //GetComponent<AudioSource>().Stop();
+        Score = true;
         FireState = true;
         FireEnabled = false;
         Pattern = 1;
@@ -83,12 +83,12 @@ public class Boss_Level1 : MonoBehaviour {
         {
             GetComponent<Enemy_Info>().HP -= Player.GetComponent<Player_Fire>().Damage;
             EventSP.GetComponent<Event_ScoreHP>().MinHP(50);
-            Debug.Log("Enemy_Move : 플레이어와 부딛힘");
+            //Debug.Log("Enemy_Move : 플레이어와 부딛힘");
         }
         else if (col.GetComponent<Collider2D>().tag == "Missile")
         {
             GetComponent<Enemy_Info>().HP -= Player.GetComponent<Player_Fire>().Damage;
-            Debug.Log("Enemy_Move : 미사일과 부딛힘");
+            //Debug.Log("Enemy_Move : 미사일과 부딛힘");
         }
     }
 
@@ -120,7 +120,7 @@ public class Boss_Level1 : MonoBehaviour {
                 Missile3[i] = null;
             }
         }
-        EventSP.GetComponent<Event_ScoreHP>().check = true;
+        EventSP.GetComponent<Event_ScoreHP>().BossDeathCheck = true;
         gameObject.SetActive(false);
     }
 
@@ -129,16 +129,18 @@ public class Boss_Level1 : MonoBehaviour {
     {
         if (GetComponent<Enemy_Info>().HP <= 0)
         {
-            GetComponent<AudioSource>().Play();
             if (Score)
             {
+                FireEnabled = false;
+                GetComponent<Enemy_Info>().HP = 0;
                 EventSP.GetComponent<Event_ScoreHP>().AddScore(GetComponent<Enemy_Info>().Score);
+                GetComponent<AudioSource>().Play();
                 Score = false;
             }
-            FireEnabled = false;
             Explosion1.SetActive(true);
             Explosion2.SetActive(true);
             Explosion3.SetActive(true);
+            EventSP.GetComponent<Event_ScoreHP>().BossDeathCheck = true;
             Invoke("Dead", 3f);
         }
     }
@@ -148,13 +150,16 @@ public class Boss_Level1 : MonoBehaviour {
     {
         if(transform.position.y-DownShift.transform.position.y < Constant.MAX_YPOS_UP - 2f)
         {
-            FireEnabled = true;
+            if(GetComponent<Enemy_Info>().HP > 0)
+            {
+                FireEnabled = true;
+            }
             GameObject.Find("Player").GetComponent<Auto_Move>().AutoCheck = false;
         }
-        if(EventSP.GetComponent<Event_ScoreHP>().hp == 0)
+        if(Player_Data.HP <= 0)
         {
             FireState = false;
-
+            FireEnabled = false;
         }
     }
 

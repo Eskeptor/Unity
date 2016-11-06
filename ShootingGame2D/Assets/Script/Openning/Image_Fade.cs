@@ -10,6 +10,7 @@ public class Image_Fade : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
+        Screen.SetResolution(400, 600, false);
         GetComponent<Animator>().SetBool("FadeStart", true);
     }
 	

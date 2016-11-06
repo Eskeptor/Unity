@@ -18,10 +18,10 @@ public class Player_Missile : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D col)
     {
         // When missile hit Enemy tag(The missile hits are Collider disabled)
-        if (col.GetComponent<Collider2D>().tag == "Enemy")
+        if (col.GetComponent<Collider2D>().tag == "Enemy" || col.GetComponent<Collider2D>().tag == "Boss")
         {
             GetComponent<Collider2D>().enabled = false;
-            Debug.Log("Missile_Move : 미사일이 적과 부딛힘");
+            //Debug.Log("Missile_Move : 미사일이 적과 부딛힘");
         }
 
         // When missile hit top bar

@@ -29,13 +29,13 @@ public class Enemy_Missile : MonoBehaviour {
         if (col.GetComponent<Collider2D>().tag == "Player")
         {
             GetComponent<Collider2D>().enabled = false;
-            Debug.Log("Enemy_Missile : Player와 부딛힘");
+            //Debug.Log("Enemy_Missile : Player와 부딛힘");
             Locked = true;
         }
         if (col.GetComponent<Collider2D>().tag == "DownShift")
         {
             GetComponent<Collider2D>().enabled = false;
-            Debug.Log("Enemy_Missile : 바닥과 부딛힘");
+            //Debug.Log("Enemy_Missile : 바닥과 부딛힘");
             Locked = true;
         }
     }

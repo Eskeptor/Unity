@@ -55,13 +55,14 @@ public class Player_Move : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.GetComponent<Collider2D>().tag == "Enemy")
+        if (col.GetComponent<Collider2D>().tag == "Enemy" || col.GetComponent<Collider2D>().tag == "Boss")
         {
+            Player_Data.HP -= 50;
             Debug.Log("Player_Move : 적과 부딛힘");
         }
-        if(col.GetComponent<Collider2D>().tag=="Enemy Missile")
+        if (col.GetComponent<Collider2D>().tag == "Enemy Missile") 
         {
-            EventSP.GetComponent<Event_ScoreHP>().hp -= 30;
+            Player_Data.HP -= 30;
             Debug.Log("Player_Move : 적 미사일과 부딛힘");
         }
     }
@@ -73,7 +74,7 @@ public class Player_Move : MonoBehaviour {
 
     void DeadCheck()
     {
-        if (EventSP.GetComponent<Event_ScoreHP>().hp <= 0)
+        if (Player_Data.HP <= 0)
         {
             Death = true;
             Explosion.SetActive(true);

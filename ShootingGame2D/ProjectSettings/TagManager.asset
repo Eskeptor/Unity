@@ -9,6 +9,9 @@ TagManager:
   - DownShift
   - Sidebar
   - Enemy Missile
+  - EventSP
+  - New Tag
+  - Boss
   layers:
   - Default
   - TransparentFX
