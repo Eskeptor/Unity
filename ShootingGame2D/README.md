@@ -3,12 +3,11 @@
 My School works project.
 ## What's New? (Last updated 2016.11.3)
 ```
- 1) Implement game level1 design
- 2) Implement openning scene
- 3) Implement main menu
- 4) Add audio source for enemy death
- 5) Add background music
- 6) Fix score bug(when boss death)
+ 1) Implement game level2 design(Not complete)
+ 2) Fix bug(when enemy die, missile leak and stop attack)
+ 3) Optimize codes(little)
+ 4) Optimize game performance(Average FPS 81.2 -> Average FPS 1102 => More than 10 times better)
+ 5) Add new type enemy
 ```
 ## Next Updates
 ```
