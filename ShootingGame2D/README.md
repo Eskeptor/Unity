@@ -1,7 +1,7 @@
 # Welcome to my "2D Shooting Game Project(using C#)"
 ## About this project
 My School works project.
-## What's New? (Last updated 2016.11.3)
+## What's New? (Last updated 2016.11.6)
 ```
  1) Implement game level2 design(Not complete)
  2) Fix bug(when enemy die, missile leak and stop attack)
