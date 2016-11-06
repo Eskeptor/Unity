@@ -23,6 +23,8 @@ My School works project.
  Right : Arrow Right
  A : Fire
 ```
+## Game ScreenShot
+![homepage](./ReadmeImage/ScreenShot01.PNG)
 ## Source Copyright
 ```
  Sprite Sources : https://pixabay.com/
