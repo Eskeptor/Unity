@@ -1,8 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/* Missile Type List
+ * 1 : Default Missile(Player Transform-based)
+ * 2 : Straight Missile
+ * 3 : Guided Missile
+ */
+
 public class Enemy_Missile : MonoBehaviour {
     public float MoveSpeed = 8f;
+    public int MissileType = 1;
 
     private Vector3 GoalPos;
     private bool Locked;
@@ -10,12 +17,22 @@ public class Enemy_Missile : MonoBehaviour {
     // Use this for initialization
     void Start () {
         Locked = true;
-        LockedPos();
     }
 	
 	// Update is called once per frame
 	void Update () {
-        LockedPos();
+        if(MissileType == 1)
+        {
+            LockedPos();
+        }
+        else if(MissileType == 2)
+        {
+
+        }
+        else if(MissileType == 3)
+        {
+
+        }
         Move();
 	}
 

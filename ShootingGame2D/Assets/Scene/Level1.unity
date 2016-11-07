@@ -373,7 +373,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000014271396244, guid: ff464be072fe9c94e8ca73bbc141b703, type: 2}
       propertyPath: m_Name
-      value: GameOverCanvas
+      value: GameOver Canvas
       objectReference: {fileID: 0}
     - target: {fileID: 1000012030807360, guid: ff464be072fe9c94e8ca73bbc141b703, type: 2}
       propertyPath: m_Name
