@@ -1,13 +1,13 @@
 # Welcome to my "2D Shooting Game Project(using C#)"
 ## About this project
-My School works project.
-## What's New? (Last updated 2016.11.6)
+My school works project.
+## What's New? (Last updated 2016.11.7)
 ```
- 1) Implement game level2 design(Not complete)
- 2) Fix bug(when enemy die, missile leak and stop attack)
+ 1) Implement game level2 Boss Pattern design(Not complete)
+ 2) Fix bug(fix application not closeed)
  3) Optimize codes(little)
- 4) Optimize game performance(Average FPS 81.2 -> Average FPS 1102 => More than 10 times better)
- 5) Add new type enemy
+ 4) Optimize game performance(Average FPS 1102 -> Average FPS 1431)
+ 5) Add new enemy's missiles
 ```
 ## Next Updates
 ```
@@ -32,4 +32,4 @@ My School works project.
  (Reference Copyright folder)
 ```
 ## Good Bye!!
-Compiled by Unity Personal 5.4.0f and Visual Studio 2015 C#
+Compiled by Unity Personal 5.4.0f3 and Visual Studio 2015 C#

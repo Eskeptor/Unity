@@ -2,6 +2,9 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
+// AppHelper class by Unity Community
+// http://answers.unity3d.com/questions/161858/startstop-playmode-from-editor-script.html
+
 public class SceneChange : MonoBehaviour {
     //public Animation Menu;
     //public Animation Set;
@@ -33,6 +36,23 @@ public class SceneChange : MonoBehaviour {
 
     public void GameExit()
     {
+        AppHelper.Quit();
+    }
+}
+
+public static class AppHelper
+{
+#if UNITY_WEBPLAYER
+     public static string webplayerQuitURL = "http://google.com";
+#endif
+    public static void Quit()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#elif UNITY_WEBPLAYER
+        Application.OpenURL(webplayerQuitURL);
+#else
         Application.Quit();
+#endif
     }
 }

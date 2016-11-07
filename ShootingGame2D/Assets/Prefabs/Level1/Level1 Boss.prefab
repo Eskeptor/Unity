@@ -579,7 +579,6 @@ MonoBehaviour:
   MissileLocation4: {fileID: 4000013064129532}
   MissileMaximumPool: 4
   FireCycleTime: 1
-  FireEnabled: 0
 --- !u!114 &114000011835452468
 MonoBehaviour:
   m_ObjectHideFlags: 1
