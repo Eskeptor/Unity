@@ -62,7 +62,7 @@ public class Player_Move : MonoBehaviour {
         }
         if (col.GetComponent<Collider2D>().tag == "Enemy Missile") 
         {
-            Player_Data.HP -= 30;
+            Player_Data.HP -= col.GetComponent<Enemy_Missile>().Damage;
             Debug.Log("Player_Move : 적 미사일과 부딛힘");
         }
     }

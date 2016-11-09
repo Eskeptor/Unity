@@ -22,6 +22,7 @@ public class Boss_Level2 : MonoBehaviour {
     //public Transform HiddenMissileLocation;
 
     public int MissileMaximumPool = 6;
+    public int ExtraPool = 6;
     public float FireCycleTime = 1f;
 
     private bool FireEnabled;   // By measuring the distance to fire a missile
@@ -59,13 +60,13 @@ public class Boss_Level2 : MonoBehaviour {
         DownShift = GameObject.Find("DownShift");
 
         // Create Missile
-        MPool1.Create(MissileObject1, MissileMaximumPool * 6);
-        MPool2.Create(MissileObject2, MissileMaximumPool * 6);
-        MPool3.Create(MissileObject3, 2);
+        MPool1.Create(MissileObject1, MissileMaximumPool * ExtraPool);
+        MPool2.Create(MissileObject2, MissileMaximumPool * ExtraPool);
+        MPool3.Create(MissileObject3, MissileMaximumPool);
         MPool4.Create(MissileObject4, 4);
-        Missile1 = new GameObject[MissileMaximumPool * 6];
-        Missile2 = new GameObject[MissileMaximumPool * 6];
-        Missile3 = new GameObject[2];
+        Missile1 = new GameObject[MissileMaximumPool * ExtraPool];
+        Missile2 = new GameObject[MissileMaximumPool * ExtraPool];
+        Missile3 = new GameObject[MissileMaximumPool];
         Missile4 = new GameObject[4];
         //HMissile = HiddenMissileObject;
 
@@ -97,6 +98,7 @@ public class Boss_Level2 : MonoBehaviour {
         {
             IsDead();
             MissileFire();
+            ReturnMissile();
         }
 	}
 
@@ -198,8 +200,11 @@ public class Boss_Level2 : MonoBehaviour {
     // Missile fire
     void MissileFire()
     {
+        
         if (FireState)
         {
+            Debug.Log("SemiPattern : " + SemiPattern);
+            Debug.Log("Pattern : " + Pattern);
             switch (Pattern)
             {
                 case 1:
@@ -209,7 +214,7 @@ public class Boss_Level2 : MonoBehaviour {
                             && Missile1[SemiPattern * MissileMaximumPool + 2] == null && Missile1[SemiPattern * MissileMaximumPool + 3] == null 
                             && Missile1[SemiPattern * MissileMaximumPool + 4] == null && Missile1[SemiPattern * MissileMaximumPool + 5] == null)
                         {
-                            for (int i = SemiPattern * MissileMaximumPool; i < SemiPattern * MissileMaximumPool + 5; i++)
+                            for (int i = SemiPattern * MissileMaximumPool; i < SemiPattern * MissileMaximumPool + ExtraPool; i++)
                             {
                                 Missile1[i] = MPool1.NewItem();
                             }
@@ -231,7 +236,7 @@ public class Boss_Level2 : MonoBehaviour {
                             && Missile2[SemiPattern * MissileMaximumPool + 2] == null && Missile2[SemiPattern * MissileMaximumPool + 3] == null
                             && Missile2[SemiPattern * MissileMaximumPool + 4] == null && Missile2[SemiPattern * MissileMaximumPool + 5] == null)
                         {
-                            for (int i = SemiPattern * MissileMaximumPool; i < SemiPattern * MissileMaximumPool + 5; i++)
+                            for (int i = SemiPattern * MissileMaximumPool; i < SemiPattern * MissileMaximumPool + ExtraPool; i++)
                             {
                                 Missile2[i] = MPool2.NewItem();
                             }
@@ -243,7 +248,7 @@ public class Boss_Level2 : MonoBehaviour {
                             Missile2[SemiPattern * MissileMaximumPool + 5].transform.position = MissileLocation6.transform.position;
                         }
                         FireState = false;
-                        if (SemiPattern < 6)
+                        if (SemiPattern < 5)
                         {
                             SemiPattern++;
                             Pattern = 1;
@@ -268,34 +273,34 @@ public class Boss_Level2 : MonoBehaviour {
                                         {
                                             Missile3[i] = MPool3.NewItem();
                                         }
-                                        Missile3[0].transform.position = MissileLocation2.transform.position;
-                                        Missile3[1].transform.position = MissileLocation5.transform.position;
+                                        Missile3[0].transform.position = new Vector3(MissileLocation2.transform.position.x, MissileLocation2.transform.position.y - 2.3f, 0f);
+                                        Missile3[1].transform.position = new Vector3(MissileLocation5.transform.position.x, MissileLocation5.transform.position.y - 2.3f, 0f);
                                     }
                                     break;
                                 }
                             case 1:
                                 {
-                                    if (Missile3[0] == null && Missile3[1] == null)
+                                    if (Missile3[2] == null && Missile3[3] == null)
                                     {
-                                        for (int i = 0; i < 2; i++)
+                                        for (int i = 2; i < 4; i++)
                                         {
                                             Missile3[i] = MPool3.NewItem();
                                         }
-                                        Missile3[0].transform.position = MissileLocation3.transform.position;
-                                        Missile3[1].transform.position = MissileLocation6.transform.position;
+                                        Missile3[2].transform.position = new Vector3(MissileLocation3.transform.position.x, MissileLocation3.transform.position.y - 2.3f, 0f);
+                                        Missile3[3].transform.position = new Vector3(MissileLocation6.transform.position.x, MissileLocation6.transform.position.y - 2.3f, 0f);
                                     }
                                     break;
                                 }
                             case 2:
                                 {
-                                    if (Missile3[0] == null && Missile3[1] == null)
+                                    if (Missile3[4] == null && Missile3[5] == null)
                                     {
-                                        for (int i = 0; i < 2; i++)
+                                        for (int i = 4; i < 6; i++)
                                         {
                                             Missile3[i] = MPool3.NewItem();
                                         }
-                                        Missile3[0].transform.position = MissileLocation1.transform.position;
-                                        Missile3[1].transform.position = MissileLocation4.transform.position;
+                                        Missile3[4].transform.position = new Vector3(MissileLocation1.transform.position.x, MissileLocation1.transform.position.y - 2.3f, 0f);
+                                        Missile3[5].transform.position = new Vector3(MissileLocation4.transform.position.x, MissileLocation4.transform.position.y - 2.3f, 0f);
                                     }
                                     break;
                                 }
@@ -359,7 +364,9 @@ public class Boss_Level2 : MonoBehaviour {
                     }
             }
         }
-        
+    }
+    void ReturnMissile()
+    {
         for (int i = 0; i < Missile1.Length; i++)
         {
             if (Missile1[i])
@@ -380,7 +387,7 @@ public class Boss_Level2 : MonoBehaviour {
                     Missile2[i] = null;
                 }
             }
-            if (i < 2)
+            if (i < 6)
             {
                 if (Missile3[i])
                 {

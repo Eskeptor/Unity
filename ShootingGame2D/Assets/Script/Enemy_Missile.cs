@@ -10,6 +10,7 @@ using System.Collections;
 public class Enemy_Missile : MonoBehaviour {
     public float MoveSpeed = 8f;
     public int MissileType = 1;
+    public int Damage = 30;
 
     private Vector3 GoalPos;
     private bool Locked;
@@ -23,17 +24,17 @@ public class Enemy_Missile : MonoBehaviour {
 	void Update () {
         if(MissileType == 1)
         {
+            Move();
             LockedPos();
         }
         else if(MissileType == 2)
         {
-
+            Invoke("DelayDestroy", 1f);
         }
         else if(MissileType == 3)
         {
 
         }
-        Move();
 	}
 
     void Move()
@@ -45,15 +46,21 @@ public class Enemy_Missile : MonoBehaviour {
     {
         if (col.GetComponent<Collider2D>().tag == "Player")
         {
-            GetComponent<Collider2D>().enabled = false;
             //Debug.Log("Enemy_Missile : Player와 부딛힘");
-            Locked = true;
+            if(MissileType == 1)
+            {
+                GetComponent<Collider2D>().enabled = false;
+                Locked = true;
+            }
         }
         if (col.GetComponent<Collider2D>().tag == "DownShift")
         {
-            GetComponent<Collider2D>().enabled = false;
             //Debug.Log("Enemy_Missile : 바닥과 부딛힘");
-            Locked = true;
+            if (MissileType == 1)
+            {
+                GetComponent<Collider2D>().enabled = false;
+                Locked = true;
+            }
         }
     }
 
@@ -67,5 +74,10 @@ public class Enemy_Missile : MonoBehaviour {
                 Locked = false;
             }
         }
+    }
+
+    void DelayDestroy()
+    {
+        GetComponent<Collider2D>().enabled = false;
     }
 }
