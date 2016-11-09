@@ -1,13 +1,11 @@
 # Welcome to my "2D Shooting Game Project(using C#)"
 ## About this project
 My school works project.
-## What's New? (Last updated 2016.11.7)
+## What's New? (Last updated 2016.11.9)
 ```
  1) Implement game level2 Boss Pattern design(Not complete)
- 2) Fix bug(fix application not closeed)
+ 2) Fix bug(Boss missile not fire)
  3) Optimize codes(little)
- 4) Optimize game performance(Average FPS 1102 -> Average FPS 1431)
- 5) Add new enemy's missiles
 ```
 ## Next Updates
 ```
