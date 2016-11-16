@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
+// This class is Openning Effect
 public class Image_Fade : MonoBehaviour
 {
     public float FadeTime = 5f;

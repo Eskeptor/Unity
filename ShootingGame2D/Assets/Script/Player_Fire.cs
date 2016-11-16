@@ -2,18 +2,18 @@
 using System.Collections;
 
 public class Player_Fire : MonoBehaviour {
-    public float FireDelay = 0.2f;  // Control fire cycle;
-    public int MissileMaximumPool = 20; // Create Missile Memory Pool
-    public int Damage = 10;
-    public Transform RightMissileLocation;
-    public Transform LeftMissileLocation;
-    public AudioSource MissileSound;
-    public GameObject Missile;
+    /* Public Object */
+    public int MissileMaximumPool = 20;             // Player's missile memory maximum pool
+    public Transform RightMissileLocation;          // Player's missile fire location
+    public Transform LeftMissileLocation;           // Player's missile fire location
+    public AudioSource MissileSound;                // Player's missile fire sound
+    public GameObject MissileObject;                // Player's missile object
 
-    private bool FireState; // for Control fire cycle;
-    private bool DeadCheck; // Player Dead Check
-    private MemoryPool MPool = new MemoryPool();
-    private GameObject[] MissileLeft;
+    /* Private Object */
+    private bool FireState;                         // for Control fire cycle;
+    private bool DeadCheck;                         // Player Dead Check
+    private MemoryPool MPool = new MemoryPool();    // for Player's missile memory pool
+    private GameObject[] MissileLeft;               // for Player's missile
     private GameObject[] MissileRight;
 
     // When application quit, Memory clear
@@ -28,10 +28,12 @@ public class Player_Fire : MonoBehaviour {
         DeadCheck = IsDead();
 
         // Create Missile
-        MPool.Create(Missile, MissileMaximumPool);
+        MPool.Create(MissileObject, MissileMaximumPool);
         MissileLeft = new GameObject[MissileMaximumPool / 2];
         MissileRight = new GameObject[MissileMaximumPool / 2];
-        for(int i = 0; i < MissileMaximumPool / 2; i++)
+
+        // All missile array initialize
+        for (int i = 0; i < MissileMaximumPool / 2; i++)
         {
             MissileLeft[i] = null;
             MissileRight[i] = null;
@@ -59,7 +61,7 @@ public class Player_Fire : MonoBehaviour {
             if (Input.GetButton("Fire1"))
             {
                 // Fire Cycle Control
-                Invoke("FireCycleControl", FireDelay);
+                Invoke("FireCycleControl", Player_Data.FireRate);
 
                 // Missile enable from memory pool
                 for(int i = 0; i < MissileMaximumPool / 2; i++)

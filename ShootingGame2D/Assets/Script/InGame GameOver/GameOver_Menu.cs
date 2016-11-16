@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class GameOver_Menu : MonoBehaviour {
+    /* Public Object */
     [HideInInspector]
     public int GameOverType;
+    // GameOverType 0 : player hp = 0
+    // GameOverType 1 : stage clear
 
     void Start()
     {

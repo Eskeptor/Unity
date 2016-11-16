@@ -1,20 +1,21 @@
 ﻿using UnityEngine;
 
 public class Enemy : MonoBehaviour {
-    public GameObject Explosion;
-    public GameObject MissileObject;
-    public Transform MissileLocation;
-    public int MissileMaximumPool = 5;
-    public float FireCycleTime = 1f;
+    /* Public Object */
+    public GameObject Explosion;        // Explosion object(When the enemy died)
+    public GameObject MissileObject;    // Enemy's missile object
+    public Transform MissileLocation;   // Enemy's missile fire location
+    public int MissileMaximumPool = 5;  // Enemy's missile memory maximum pool
+    public float FireRateTime = 1f;    // Enemy's missile fire rate time
 
-    private bool FireEnabled;   // By measuring the distance to fire a missile
-    private bool FireState;     // for Fire cycle control
-    private bool Score;
-    private GameObject Player;
-    private GameObject EventSP;
-    private GameObject DownShift;
-    MemoryPool MPool = new MemoryPool();
-    private GameObject[] Missile;
+    /* Private Object */
+    private bool FireEnabled;                       // By measuring the distance to fire a missile
+    private bool FireState;                         // for Fire cycle control
+    private bool Score;                             // Check whether boss gave the score
+    private GameObject EventSP;                     // for Event_ScoreHP
+    private GameObject DownShift;                   // for Player's DownShift
+    private MemoryPool MPool = new MemoryPool();    // for Enemy's missile memory pool
+    private GameObject[] Missile;                   // for Enemy's missile
 
     // When application quit, Memory clear
     void OnApplicationQuit()
@@ -24,13 +25,14 @@ public class Enemy : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        Player = GameObject.Find("Aircraft Body");
         EventSP = GameObject.Find("ScoreHP Event");
         DownShift = GameObject.Find("DownShift");
 
         // Create Missile
         MPool.Create(MissileObject, MissileMaximumPool);
         Missile = new GameObject[MissileMaximumPool];
+
+        // All missile array initialize
         for (int i = 0; i < MissileMaximumPool; i++)
         {
             Missile[i] = null;
@@ -38,34 +40,35 @@ public class Enemy : MonoBehaviour {
 
         FireState = true;
         FireEnabled = false;
-        Score = true;
+        Score = false;
         GetComponent<AudioSource>().Stop();
     }
 	
 	// Update is called once per frame
 	void Update () {
         DistanceChecker();
+        IsDead();
         if (FireEnabled)
         {
-            IsDead();
             MissileFire();
         }
 	}
 
+    // for Collision check
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.GetComponent<Collider2D>().tag == "Player")
+        if (col.GetComponent<Collider2D>().CompareTag("Player"))
         {            
-            GetComponent<Enemy_Info>().HP -= Player.GetComponent<Player_Fire>().Damage;
+            GetComponent<Enemy_Info>().HP -= Player_Data.Damage;
             if (GetComponent<Enemy_Info>().HP < 0)
             {
                 GetComponent<Enemy_Info>().HP = 0;
             }
             //Debug.Log("Enemy_Move : 플레이어와 부딛힘");
         }
-        else if (col.GetComponent<Collider2D>().tag == "Missile")
+        else if (col.GetComponent<Collider2D>().CompareTag("Missile"))
         {
-            GetComponent<Enemy_Info>().HP -= Player.GetComponent<Player_Fire>().Damage;
+            GetComponent<Enemy_Info>().HP -= Player_Data.Damage;
             if (GetComponent<Enemy_Info>().HP < 0)
             {
                 GetComponent<Enemy_Info>().HP = 0;
@@ -97,12 +100,12 @@ public class Enemy : MonoBehaviour {
     {
         if (GetComponent<Enemy_Info>().HP == 0)
         {
-            if (Score)
+            if (!Score)
             {
                 FireEnabled = false;
                 GetComponent<AudioSource>().Play();
                 EventSP.GetComponent<Event_ScoreHP>().AddScore(GetComponent<Enemy_Info>().Score);
-                Score = false;
+                Score = true;
             }
             Explosion.SetActive(true);
             Invoke("Dead", 1f);
@@ -130,7 +133,7 @@ public class Enemy : MonoBehaviour {
     {
         if (FireState)
         {
-            Invoke("FireCycleControl", FireCycleTime);
+            Invoke("FireCycleControl", FireRateTime);
             for(int i = 0; i < MissileMaximumPool; i++)
             {
                 if (Missile[i] == null)
@@ -142,7 +145,9 @@ public class Enemy : MonoBehaviour {
             }
             FireState = false;
         }
-        for(int i = 0; i < MissileMaximumPool; i++)
+
+        // Returns missiles in memory pool
+        for (int i = 0; i < MissileMaximumPool; i++)
         {
             if (Missile[i])
             {

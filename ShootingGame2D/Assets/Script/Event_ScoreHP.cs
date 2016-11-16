@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class Event_ScoreHP : MonoBehaviour {
     public Text Score;
@@ -58,6 +56,7 @@ public class Event_ScoreHP : MonoBehaviour {
             Player_Data.HP = 0;
             Player.GetComponent<Auto_Move>().AutoSpeed = 0f;
             Player.transform.Find("Main Camera").Find("GameOver Canvas").GetComponent<GameOver_Menu>().GameOverType = 0;
+            Player.transform.Find("Aircraft Body").GetComponent<Player_Move>().Death = true;
             GameOver.transform.Find("Title").GetComponent<Text>().text = "게임 오버";
             GameOver.transform.Find("LastScore").GetComponent<Text>().text = "최종점수 : " + Player_Data.Score;
             GameOver.transform.Find("Restart").GetComponentInChildren<Text>().text = "재시작";
@@ -68,6 +67,7 @@ public class Event_ScoreHP : MonoBehaviour {
             Player.GetComponent<Auto_Move>().AutoSpeed = 0f;
             Player.GetComponent<Transform>().Translate(0f, 0f, 0f);
             Player.transform.Find("Main Camera").Find("GameOver Canvas").GetComponent<GameOver_Menu>().GameOverType = 1;
+            Player.transform.Find("Aircraft Body").GetComponent<Player_Move>().Death = true;
             GameOver.transform.Find("Title").GetComponent<Text>().text = "클리어";
             GameOver.transform.Find("LastScore").GetComponent<Text>().text = "최종점수 : " + Player_Data.Score;
             GameOver.transform.Find("Restart").GetComponentInChildren<Text>().text = "다음단계";

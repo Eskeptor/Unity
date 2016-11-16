@@ -2,7 +2,10 @@
 using System.Collections;
 
 public static class Player_Data {
-    public static int HP = 90;
-    public static int Score = 0;
-    public const int Init_HP = 90;
+    public static byte Type = 1;            // missile type
+    public static int Damage = 10;          // missile damage
+    public static float FireRate = 0.3f;    // missile fire rate
+    public static int HP = 0;               // player hp
+    public static int Score = 0;            // player score
+    public static int Init_HP = 90;         // player init hp
 }

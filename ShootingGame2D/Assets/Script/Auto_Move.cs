@@ -2,9 +2,10 @@
 using System.Collections;
 
 public class Auto_Move : MonoBehaviour {
-    public float AutoSpeed = 0.2f;
+    /* Public Object */
+    public float AutoSpeed = 0.2f;      // player's auto move speed
     [HideInInspector]
-    public bool AutoCheck;
+    public bool AutoCheck;              // player auto move enabler
 
 	// Use this for initialization
 	void Start () {

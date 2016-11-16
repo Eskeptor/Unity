@@ -115,6 +115,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveSpeed: 8
+  MissileType: 1
+  Damage: 30
 --- !u!212 &212000013267948542
 SpriteRenderer:
   m_ObjectHideFlags: 1

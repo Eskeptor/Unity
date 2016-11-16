@@ -2,13 +2,14 @@
 using System.Collections;
 
 public class Player_Move : MonoBehaviour {
+    /* Public Object */
     public float MoveSpeed = 3f;
     public GameObject Explosion;
     public GameObject EventSP;
-
     [HideInInspector]
     public bool Death;
 
+    /* Private Object */
     private const float EnabledPosX = 3.05f;
 
 	// Use this for initialization
@@ -55,12 +56,12 @@ public class Player_Move : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.GetComponent<Collider2D>().tag == "Enemy" || col.GetComponent<Collider2D>().tag == "Boss")
+        if (col.GetComponent<Collider2D>().CompareTag("Enemy") || col.GetComponent<Collider2D>().CompareTag("Boss"))
         {
             Player_Data.HP -= 50;
             Debug.Log("Player_Move : 적과 부딛힘");
         }
-        if (col.GetComponent<Collider2D>().tag == "Enemy Missile") 
+        if (col.GetComponent<Collider2D>().CompareTag("Enemy Missile"))
         {
             Player_Data.HP -= col.GetComponent<Enemy_Missile>().Damage;
             Debug.Log("Player_Move : 적 미사일과 부딛힘");

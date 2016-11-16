@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections;
 
+// This class is background effect class
 public class Background : MonoBehaviour {
-    public float RotateSpeed = 0.1f;
+    /* Public Object */
+    public float RotateSpeed = 0.1f;    // Screen rotate speed
 	
 	// Update is called once per frame
 	void Update () {

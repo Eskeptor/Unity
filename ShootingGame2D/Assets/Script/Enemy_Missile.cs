@@ -44,7 +44,7 @@ public class Enemy_Missile : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.GetComponent<Collider2D>().tag == "Player")
+        if (col.GetComponent<Collider2D>().CompareTag("Player"))
         {
             //Debug.Log("Enemy_Missile : Player와 부딛힘");
             if(MissileType == 1)
@@ -53,7 +53,7 @@ public class Enemy_Missile : MonoBehaviour {
                 Locked = true;
             }
         }
-        if (col.GetComponent<Collider2D>().tag == "DownShift")
+        if (col.GetComponent<Collider2D>().CompareTag("DownShift"))
         {
             //Debug.Log("Enemy_Missile : 바닥과 부딛힘");
             if (MissileType == 1)

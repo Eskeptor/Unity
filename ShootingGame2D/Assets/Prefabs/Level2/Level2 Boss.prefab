@@ -278,7 +278,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012909949718}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 0.40306273, y: 7.69, z: 0.03515625}
+  m_LocalPosition: {x: 0.40306273, y: 22.67, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_Children:
@@ -367,7 +367,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011405272710}
   m_LocalRotation: {x: -0, y: -0, z: -1, w: 0}
-  m_LocalPosition: {x: 0.55306274, y: -0.16875935, z: -0.03515625}
+  m_LocalPosition: {x: 0.55306274, y: -0.16875935, z: 0}
   m_LocalScale: {x: 0.42614496, y: 0.42614493, z: 0.42614493}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -706,6 +706,7 @@ MonoBehaviour:
   MissileLocation5: {fileID: 4000012536703478}
   MissileLocation6: {fileID: 4000012225941900}
   MissileMaximumPool: 6
+  ExtraPool: 6
   FireCycleTime: 1
 --- !u!212 &212000012168167556
 SpriteRenderer:
