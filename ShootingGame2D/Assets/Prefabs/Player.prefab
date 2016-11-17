@@ -1201,13 +1201,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db868e82ac2296e479c5f6d9514785e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FireDelay: 0.2
   MissileMaximumPool: 20
-  Damage: 10
   RightMissileLocation: {fileID: 4000011839575288}
   LeftMissileLocation: {fileID: 4000013986187268}
   MissileSound: {fileID: 82000012946456292}
-  Missile: {fileID: 1000010019110286, guid: 051b1e6e1020d734e9ea7ebe91fbe134, type: 2}
+  MissileObject: {fileID: 1000010019110286, guid: 051b1e6e1020d734e9ea7ebe91fbe134,
+    type: 2}
 --- !u!114 &114000010079094434
 MonoBehaviour:
   m_ObjectHideFlags: 1

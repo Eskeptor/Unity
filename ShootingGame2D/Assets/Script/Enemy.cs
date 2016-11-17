@@ -7,11 +7,15 @@ public class Enemy : MonoBehaviour {
     public Transform MissileLocation;   // Enemy's missile fire location
     public int MissileMaximumPool = 5;  // Enemy's missile memory maximum pool
     public float FireRateTime = 1f;    // Enemy's missile fire rate time
+    [HideInInspector]
+    public int HP;
+    [HideInInspector]
+    public int Score;
 
     /* Private Object */
     private bool FireEnabled;                       // By measuring the distance to fire a missile
     private bool FireState;                         // for Fire cycle control
-    private bool Score;                             // Check whether boss gave the score
+    private bool ScoreCheck;                        // Check whether boss gave the score
     private GameObject EventSP;                     // for Event_ScoreHP
     private GameObject DownShift;                   // for Player's DownShift
     private MemoryPool MPool = new MemoryPool();    // for Enemy's missile memory pool
@@ -40,7 +44,7 @@ public class Enemy : MonoBehaviour {
 
         FireState = true;
         FireEnabled = false;
-        Score = false;
+        ScoreCheck = false;
         GetComponent<AudioSource>().Stop();
     }
 	
@@ -100,12 +104,12 @@ public class Enemy : MonoBehaviour {
     {
         if (GetComponent<Enemy_Info>().HP == 0)
         {
-            if (!Score)
+            if (!ScoreCheck)
             {
                 FireEnabled = false;
                 GetComponent<AudioSource>().Play();
                 EventSP.GetComponent<Event_ScoreHP>().AddScore(GetComponent<Enemy_Info>().Score);
-                Score = true;
+                ScoreCheck = true;
             }
             Explosion.SetActive(true);
             Invoke("Dead", 1f);

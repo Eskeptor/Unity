@@ -17,17 +17,17 @@ public class SceneChange : MonoBehaviour {
 
     /* Private Object */
     private TextAsset PlayerCSV;            // for CSV -> Text
-    private string[] PlayerDataCSV;         // converted data using PlayerCSV
-    private string[][] PlayerDataCSV_Spec;  // converted and split data using PlayerDataCSV
+    private string[] PlayerDataCSV;         // converted data(using PlayerCSV)
+    private string[][] PlayerDataCSV_Spec;  // converted and split data(using PlayerDataCSV)
 
     void Start()
     {
         PlayerCSV = Resources.Load("PlayerCSV", typeof(TextAsset)) as TextAsset;    // for CSV -> Text
-        PlayerDataCSV = PlayerCSV.text.Split('\n');                     // converted data using PlayerCSV(split '\n')
-        PlayerDataCSV_Spec = new string[PlayerDataCSV.Length - 1][];    // init array(allocation size by PlayerDataCSV)
+        PlayerDataCSV = PlayerCSV.text.Split('\n');                     // converted data(using PlayerCSV(split '\n'))
+        PlayerDataCSV_Spec = new string[PlayerDataCSV.Length - 1][];    // initialization array(allocation size by PlayerDataCSV)
         for (int i = 1; i < PlayerDataCSV.Length; i++)
         {
-            PlayerDataCSV_Spec[i - 1] = PlayerDataCSV[i].Split(',');    // converted data using PlayerDataCSV(split ',')
+            PlayerDataCSV_Spec[i - 1] = PlayerDataCSV[i].Split(',');    // converted data(using PlayerDataCSV(split ','))
         }
 
         Screen.SetResolution(400, 600, false);      // Screen set resolution
@@ -67,10 +67,10 @@ public class SceneChange : MonoBehaviour {
     }
     public void GameStartMouseOver(int num)
     {
-        Texts.transform.Find("MissileType").GetComponent<Text>().text = "미사일 타입 : " + PlayerDataCSV_Spec[num - 1][0];
-        Texts.transform.Find("MissileDamage").GetComponent<Text>().text = "미사일 데미지 : " + PlayerDataCSV_Spec[num - 1][1];
-        Texts.transform.Find("FireRate").GetComponent<Text>().text = "연사 속도 : " + PlayerDataCSV_Spec[num - 1][2];
-        Texts.transform.Find("PlayerHP").GetComponent<Text>().text = "비행기 체력 : " + PlayerDataCSV_Spec[num - 1][3];
+        Texts.transform.Find("MissileType").GetComponent<Text>().text = "미사일 타입 : " + PlayerDataCSV_Spec[num - 1][Constant.PLAYER_CSV_TYPE];
+        Texts.transform.Find("MissileDamage").GetComponent<Text>().text = "미사일 데미지 : " + PlayerDataCSV_Spec[num - 1][Constant.PLAYER_CSV_DAMAGE];
+        Texts.transform.Find("FireRate").GetComponent<Text>().text = "연사 속도 : " + PlayerDataCSV_Spec[num - 1][Constant.PLAYER_CSV_FIRERATE];
+        Texts.transform.Find("PlayerHP").GetComponent<Text>().text = "비행기 체력 : " + PlayerDataCSV_Spec[num - 1][Constant.PLAYER_CSV_HP];
     }
     public void GameStartMouseRealease()
     {
@@ -113,10 +113,10 @@ public class SceneChange : MonoBehaviour {
     {
         if (type <= PlayerDataCSV.Length - 1) 
         {
-            Player_Data.Type = byte.Parse(PlayerDataCSV_Spec[type - 1][0]);
-            Player_Data.Damage = int.Parse(PlayerDataCSV_Spec[type - 1][1]);
-            Player_Data.FireRate = float.Parse(PlayerDataCSV_Spec[type - 1][2]);
-            Player_Data.HP = Player_Data.Init_HP = int.Parse(PlayerDataCSV_Spec[type - 1][3]);
+            Player_Data.Type = byte.Parse(PlayerDataCSV_Spec[type - 1][Constant.PLAYER_CSV_TYPE]);
+            Player_Data.Damage = int.Parse(PlayerDataCSV_Spec[type - 1][Constant.PLAYER_CSV_DAMAGE]);
+            Player_Data.FireRate = float.Parse(PlayerDataCSV_Spec[type - 1][Constant.PLAYER_CSV_FIRERATE]);
+            Player_Data.HP = Player_Data.Init_HP = byte.Parse(PlayerDataCSV_Spec[type - 1][Constant.PLAYER_CSV_HP]);
             return true;
         }
         return false;

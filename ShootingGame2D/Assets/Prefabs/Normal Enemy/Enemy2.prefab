@@ -313,7 +313,9 @@ MonoBehaviour:
     type: 2}
   MissileLocation: {fileID: 4000010469326604}
   MissileMaximumPool: 5
-  FireCycleTime: 0.8
+  FireRateTime: 1
+  HP: 0
+  Score: 0
 --- !u!114 &114000014184514146
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -327,6 +329,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Score: 15
   HP: 10
+  Type: 2
 --- !u!212 &212000010561891734
 SpriteRenderer:
   m_ObjectHideFlags: 1

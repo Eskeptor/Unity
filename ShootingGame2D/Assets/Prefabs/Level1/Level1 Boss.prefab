@@ -206,7 +206,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012372292452}
-  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: -0.00000004371139}
   m_LocalPosition: {x: 0.01, y: 20.5, z: 0}
   m_LocalScale: {x: 0.45486248, y: 0.45486248, z: 0.45486248}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
@@ -578,7 +578,7 @@ MonoBehaviour:
   MissileLocation3: {fileID: 4000013534313744}
   MissileLocation4: {fileID: 4000013064129532}
   MissileMaximumPool: 4
-  FireCycleTime: 1
+  FireRateTime: 1
 --- !u!114 &114000011835452468
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -613,6 +613,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Score: 1000
   HP: 1500
+  Type: 0
 --- !u!212 &212000010388730390
 SpriteRenderer:
   m_ObjectHideFlags: 1

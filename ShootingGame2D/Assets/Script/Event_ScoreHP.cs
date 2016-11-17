@@ -35,7 +35,7 @@ public class Event_ScoreHP : MonoBehaviour {
         Player_Data.Score += add;
     }
 
-    public void MinHP(int min)
+    public void MinHP(byte min)
     {
         Player_Data.HP -= min;
     }
