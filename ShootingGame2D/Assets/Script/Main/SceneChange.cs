@@ -99,14 +99,7 @@ public class SceneChange : MonoBehaviour {
 
     public void TestFunc()
     {
-        for (int i = 0; i < PlayerDataCSV.Length - 1; i++)
-        {
-            Debug.Log("type : " + PlayerDataCSV_Spec[i][0]);
-            Debug.Log("damage : " + PlayerDataCSV_Spec[i][1]);
-            Debug.Log("rate : " + PlayerDataCSV_Spec[i][2]);
-            Debug.Log("HP : " + PlayerDataCSV_Spec[i][3]);
-            Debug.Log("InitHP : " + PlayerDataCSV_Spec[i][3]);
-        }
+        SceneManager.LoadScene("TestScene");
     }
 
     private bool PlayerInit(int type)

@@ -103,7 +103,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011773475340, guid: 23171eead43d84749aee99391b7f78db, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.41
       objectReference: {fileID: 0}
     - target: {fileID: 4000011773475340, guid: 23171eead43d84749aee99391b7f78db, type: 2}
       propertyPath: m_LocalPosition.z
@@ -129,6 +129,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4000011773475340, guid: 23171eead43d84749aee99391b7f78db, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1.1665028
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011773475340, guid: 23171eead43d84749aee99391b7f78db, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1.1665028
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011773475340, guid: 23171eead43d84749aee99391b7f78db, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1.1665028
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 23171eead43d84749aee99391b7f78db, type: 2}
   m_IsPrefabParent: 0
@@ -139,6 +151,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114000010659910234, guid: 15cb1658f1ac9ec44973cc3af7cb91b1,
+        type: 2}
+      propertyPath: EnemyObject.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4000012473863846, guid: 15cb1658f1ac9ec44973cc3af7cb91b1, type: 2}
       propertyPath: m_LocalPosition.x
       value: -0.10844796
@@ -196,6 +213,23 @@ Prefab:
       propertyPath: GameOver
       value: 
       objectReference: {fileID: 1635027738}
+    - target: {fileID: 114000010659910234, guid: 15cb1658f1ac9ec44973cc3af7cb91b1,
+        type: 2}
+      propertyPath: LevelData
+      value: 
+      objectReference: {fileID: 4900000, guid: c70d53cc8375e2d4b9f6f288d181954b, type: 3}
+    - target: {fileID: 114000010659910234, guid: 15cb1658f1ac9ec44973cc3af7cb91b1,
+        type: 2}
+      propertyPath: EnemyObject.Array.data[2]
+      value: 
+      objectReference: {fileID: 1000012129292048, guid: 1606262ebe61bd94d8eb8f841c412ef7,
+        type: 2}
+    - target: {fileID: 114000010659910234, guid: 15cb1658f1ac9ec44973cc3af7cb91b1,
+        type: 2}
+      propertyPath: EnemyObject.Array.data[3]
+      value: 
+      objectReference: {fileID: 1000012809352606, guid: 70fdf912d39ca1a408158b9ed3778f1c,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 15cb1658f1ac9ec44973cc3af7cb91b1, type: 2}
   m_IsPrefabParent: 0

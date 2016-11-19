@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Auto_Move : MonoBehaviour {
     /* Public Object */
-    public float AutoSpeed = 0.2f;      // player's auto move speed
     [HideInInspector]
     public bool AutoCheck;              // player auto move enabler
 
@@ -21,7 +20,7 @@ public class Auto_Move : MonoBehaviour {
     {
         if (AutoCheck)
         {
-            transform.Translate(0f, AutoSpeed * Time.deltaTime, 0f);
+            transform.Translate(0f, Player_Data.AutoSpeed * Time.deltaTime, 0f);
         }
     }
 }

@@ -145,7 +145,7 @@ public class Boss_Level1 : MonoBehaviour {
     // Distance check between player and enemy
     void DistanceChecker()
     {
-        if(transform.position.y-DownShift.transform.position.y < Constant.MAX_YPOS_UP - 2f)
+        if(transform.position.y-DownShift.transform.position.y < Constant.RECOGNIZED_PLAYER - 2f)
         {
             if(GetComponent<Enemy_Info>().HP > 0)
             {

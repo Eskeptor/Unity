@@ -8,4 +8,5 @@ public static class Player_Data {
     public static byte HP = 0;               // player hp
     public static int Score = 0;            // player score
     public static byte Init_HP = 90;         // player init hp
+    public static float AutoSpeed = 0.31f;
 }

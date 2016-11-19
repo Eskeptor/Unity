@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
+using System.Collections;
 using UnityEngine.UI;
 
-public class Event_ScoreHP : MonoBehaviour {
+public class TestEvent : MonoBehaviour {
     public Text Score;
     public Slider HP;
     public Text Warnning;
@@ -12,21 +13,23 @@ public class Event_ScoreHP : MonoBehaviour {
     [HideInInspector]
     public bool BossDeathCheck;
 
-    private Transform Boss;
+    //private Transform Boss;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         Screen.SetResolution(400, 600, false);
         BossDeathCheck = false;
-        Boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Transform>();
+        //Boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Transform>();
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         Score.text = "Score : " + Player_Data.Score;
         HP.value = Player_Data.HP;
-        Boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Transform>();
-        BossAreaCheck();
+        //Boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Transform>();
+        //BossAreaCheck();
         GameOverCheck();
     }
 
@@ -40,14 +43,14 @@ public class Event_ScoreHP : MonoBehaviour {
         Player_Data.HP -= min;
     }
 
-    private void BossAreaCheck()
-    {
-        if(Boss.transform.position.y - Player.transform.position.y <= WarnningYpos)
-        {
-            Warnning.enabled = true;
-            Warnning.GetComponent<Animator>().SetBool("Warn", true);
-        }
-    }
+    //private void BossAreaCheck()
+    //{
+    //    if (Boss.transform.position.y - Player.transform.position.y <= WarnningYpos)
+    //    {
+    //        Warnning.enabled = true;
+    //        Warnning.GetComponent<Animator>().SetBool("Warn", true);
+    //    }
+    //}
 
     private void GameOverCheck()
     {
@@ -62,7 +65,7 @@ public class Event_ScoreHP : MonoBehaviour {
             GameOver.transform.Find("Restart").GetComponentInChildren<Text>().text = "재시작";
             GameOver.GetComponent<Animator>().SetBool("GameOver", true);
         }
-        else if(BossDeathCheck)
+        else if (BossDeathCheck)
         {
             Player_Data.AutoSpeed = 0f;
             Player.GetComponent<Transform>().Translate(0f, 0f, 0f);

@@ -4,10 +4,10 @@ using System.Collections;
 // Constant Class
 static class Constant
 {
-    public const float MAX_XPOS = 3.33f;
-    public const float MAX_YPOS_UP = 10f;
-    public const float MAX_YPOS_DOWN = -2f;
+    public const float RECOGNIZED_PLAYER = 10f;
     public const float LEVEL1_BOSS_APPEAR = 15.5f;
+    public const float DISTROY_DISTANCE_Y = -1f;
+    public const float DISTROY_DISTANCE_X = 3.9f;
 
     public const int ENEMY_CSV_TYPE = 0;
     public const int ENEMY_CSV_DAMAGE = 1;
