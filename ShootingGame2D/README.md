@@ -1,14 +1,12 @@
 # Welcome to my "2D Shooting Game Project(using C#)"
 ## About this project
 My school works project.
-## What's New? (Last updated 2016.11.17)
+## What's New? (Last updated 2016.11.19)
 ```
- 1) Unity version change(5.4.0f3 → 5.4.2f2)
- 2) Fix bug(When the player died, the boss's missile failed to return memory pool.)
- 3) Add function(Enemy static generation → dynamic generation using "CSV file")
- 4) Add function(Player static generation → dynamic generation using "CSV file")
- 5) Add player selection(just 2 type)
- 6) Optimize game frame(Average 1341 FPS → Average 1623 FPS)
+ 1) Add Enemy3, Enemy4
+ 2) Change image(Enemy1, Enemy2)
+ 3) Add new enemy move pattern
+ 4) Add Level3(but not implement boss3)
 ```
 ## Next Updates
 ```
