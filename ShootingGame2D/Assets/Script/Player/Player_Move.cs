@@ -56,12 +56,12 @@ public class Player_Move : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.GetComponent<Collider2D>().CompareTag("Enemy") || col.GetComponent<Collider2D>().CompareTag("Boss"))
+        if (col.GetComponent<Collider2D>().CompareTag(Constant.TAG_ENEMY) || col.GetComponent<Collider2D>().CompareTag(Constant.TAG_BOSS))
         {
             Player_Data.HP -= 50;
             //Debug.Log("Player_Move : 적과 부딛힘");
         }
-        if (col.GetComponent<Collider2D>().CompareTag("Enemy Missile"))
+        if (col.GetComponent<Collider2D>().CompareTag(Constant.TAG_ENEMY_MISSILE))
         {
             Player_Data.HP -= (byte)col.GetComponent<Enemy_Missile>().Damage;
             //Debug.Log("Player_Move : 적 미사일과 부딛힘");
@@ -77,6 +77,7 @@ public class Player_Move : MonoBehaviour {
     {
         if (Player_Data.HP <= 0)
         {
+            GetComponent<Collider2D>().enabled = false;
             Death = true;
             Explosion.SetActive(true);
             Invoke("Dead", 2f);

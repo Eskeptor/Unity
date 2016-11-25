@@ -35,10 +35,5 @@ public class Enemy_AutoMove : MonoBehaviour {
                 }
             }
         }
-        
-        if (Player_Data.HP == 0)
-        {
-            
-        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
-public class Boss_Level2 : MonoBehaviour {
+public class Boss_Level3 : MonoBehaviour
+{
     /* Public Object */
     public GameObject Explosion1;               // Explosion object(When the boss1 died)
     public GameObject Explosion2;
@@ -49,7 +50,8 @@ public class Boss_Level2 : MonoBehaviour {
     }
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         EventSP = GameObject.Find("Player Event");
         DownShift = GameObject.Find("DownShift");
 
@@ -85,9 +87,10 @@ public class Boss_Level2 : MonoBehaviour {
         Pattern = 1;
         SemiPattern = 0;
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         DistanceChecker();
         IsDead();
         if (FireEnabled)
@@ -114,8 +117,8 @@ public class Boss_Level2 : MonoBehaviour {
     // When enemy is down, deactivate object(not destroy) and returns missiles in memory pool
     void Dead()
     {
-        
-        for (int i = 0; i < Missile1.Length; i++) 
+
+        for (int i = 0; i < Missile1.Length; i++)
         {
             if (Missile1[i])
             {
@@ -130,7 +133,7 @@ public class Boss_Level2 : MonoBehaviour {
                 Missile2[i] = null;
             }
         }
-        for(int i = 0; i < Missile3.Length; i++)
+        for (int i = 0; i < Missile3.Length; i++)
         {
             if (Missile3[i])
             {
@@ -139,7 +142,7 @@ public class Boss_Level2 : MonoBehaviour {
                 Missile3[i] = null;
             }
         }
-        for(int i = 0; i < Missile4.Length; i++)
+        for (int i = 0; i < Missile4.Length; i++)
         {
             if (Missile4[i])
             {
@@ -176,15 +179,15 @@ public class Boss_Level2 : MonoBehaviour {
     // Distance check between player and enemy
     void DistanceChecker()
     {
-        if(transform.position.y-DownShift.transform.position.y < Constant.RECOGNIZED_PLAYER - 2f)
+        if (transform.position.y - DownShift.transform.position.y < Constant.RECOGNIZED_PLAYER - 2f)
         {
-            if(GetComponent<Enemy_Info>().HP > 0)
+            if (GetComponent<Enemy_Info>().HP > 0)
             {
                 FireEnabled = true;
             }
             GameObject.Find(Constant.NAME_PLAYER).GetComponent<Auto_Move>().AutoCheck = false;
         }
-        if(Player_Data.HP <= 0)
+        if (Player_Data.HP <= 0)
         {
             FireState = false;
             FireEnabled = false;
@@ -410,13 +413,13 @@ public class Boss_Level2 : MonoBehaviour {
         }
     }
 
-    
+
 
     // Fire Cycle Control
     private void FireCycleControl()
     {
         FireState = true;
-        if(Pattern >= 5)
+        if (Pattern >= 5)
         {
             Pattern = 1;
         }

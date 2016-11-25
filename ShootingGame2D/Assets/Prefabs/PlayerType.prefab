@@ -448,7 +448,7 @@ GameObject:
   - 4: {fileID: 4000010637483728}
   - 114: {fileID: 114000011057741014}
   m_Layer: 0
-  m_Name: Player
+  m_Name: PlayerType
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1379,7 +1379,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89a9a83c767cb1743bd1e90eea721cba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AutoSpeed: 0.31
   AutoCheck: 0
 --- !u!114 &114000011218648480
 MonoBehaviour:
@@ -5545,7 +5544,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4352208dd39740144ab48ff483dedf4f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 29d7bc14645fc6c4abf5cb7f6251067e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

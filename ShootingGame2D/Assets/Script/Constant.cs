@@ -23,4 +23,13 @@ static class Constant
     public const int LEVEL_CSV_XPOS = 0;
     public const int LEVEL_CSV_YPOS = 1;
     public const int LEVEL_CSV_TYPE = 2;
+
+    public const string NAME_PLAYER = "PlayerType";
+    public const string NAME_ENEMY_MISSILE = "Enemy Missile Image";
+
+    public const string TAG_PLAYER = "Player";
+    public const string TAG_PLAYER_MISSILE = "Missile";
+    public const string TAG_ENEMY = "Enemy";
+    public const string TAG_ENEMY_MISSILE = "Enemy Missile";
+    public const string TAG_BOSS = "Boss";
 }

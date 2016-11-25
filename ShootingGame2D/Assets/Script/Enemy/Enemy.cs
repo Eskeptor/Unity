@@ -29,7 +29,7 @@ public class Enemy : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        EventSP = GameObject.Find("ScoreHP Event");
+        EventSP = GameObject.Find("Player Event");
         DownShift = GameObject.Find("DownShift");
 
         // Create Missile
@@ -61,7 +61,7 @@ public class Enemy : MonoBehaviour {
     // for Collision check
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.GetComponent<Collider2D>().CompareTag("Player"))
+        if (col.GetComponent<Collider2D>().CompareTag(Constant.TAG_PLAYER))
         {            
             GetComponent<Enemy_Info>().HP -= Player_Data.Damage;
             if (GetComponent<Enemy_Info>().HP < 0)
@@ -70,7 +70,7 @@ public class Enemy : MonoBehaviour {
             }
             //Debug.Log("Enemy_Move : 플레이어와 부딛힘");
         }
-        else if (col.GetComponent<Collider2D>().CompareTag("Missile"))
+        else if (col.GetComponent<Collider2D>().CompareTag(Constant.TAG_PLAYER_MISSILE))
         {
             GetComponent<Enemy_Info>().HP -= Player_Data.Damage;
             if (GetComponent<Enemy_Info>().HP < 0)
@@ -121,19 +121,23 @@ public class Enemy : MonoBehaviour {
     {
         if (transform.position.y - DownShift.transform.position.y < Constant.RECOGNIZED_PLAYER)
         {
-            if(GetComponent<Enemy_Info>().HP != 0)
+            if(GetComponent<Enemy_Info>().HP != 0 && Player_Data.HP != 0)
             {
                 FireEnabled = true;
+            }
+            else
+            {
+                FireEnabled = false;
             }
         }
         if (transform.position.y - DownShift.transform.position.y == Constant.DISTROY_DISTANCE_Y || transform.position.x - DownShift.transform.position.x >= Constant.DISTROY_DISTANCE_X || transform.position.x - DownShift.transform.position.x <= -Constant.DISTROY_DISTANCE_X)
         {
             Dead();
         }
-        if (Player_Data.HP == 0)
-        {
-            FireEnabled = false;
-        }
+        //if (Player_Data.HP == 0)
+        //{
+        //    FireEnabled = false;
+        //}
     }
 
     // Missile fire

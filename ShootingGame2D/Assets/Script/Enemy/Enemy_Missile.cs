@@ -13,6 +13,7 @@ public class Enemy_Missile : MonoBehaviour {
     public int Damage = 30;
 
     private Vector3 GoalPos;
+    private float Angle;
     private bool Locked;
 
     // Use this for initialization
@@ -40,11 +41,12 @@ public class Enemy_Missile : MonoBehaviour {
     void Move()
     {
         transform.Translate(GoalPos * MoveSpeed * Time.deltaTime);
+        transform.Find("Enemy Missile Image").rotation = Quaternion.Euler(0, 0, Angle + 90);
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.GetComponent<Collider2D>().CompareTag("Player"))
+        if (col.GetComponent<Collider2D>().CompareTag(Constant.TAG_PLAYER))
         {
             //Debug.Log("Enemy_Missile : Player와 부딛힘");
             if(MissileType == 1)
@@ -71,6 +73,7 @@ public class Enemy_Missile : MonoBehaviour {
             if (Locked)
             {
                 GoalPos = -(GameObject.Find("Aircraft Body").GetComponent<Transform>().transform.position - gameObject.transform.position).normalized;
+                Angle = Mathf.Atan2(GoalPos.y, GoalPos.x) * Mathf.Rad2Deg;
                 Locked = false;
             }
         }

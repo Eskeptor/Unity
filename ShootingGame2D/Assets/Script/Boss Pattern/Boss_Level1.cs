@@ -39,7 +39,7 @@ public class Boss_Level1 : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        EventSP = GameObject.Find("ScoreHP Event");
+        EventSP = GameObject.Find("Player Event");
         DownShift = GameObject.Find("DownShift");
 
         // Create missile into memory pool
@@ -77,13 +77,12 @@ public class Boss_Level1 : MonoBehaviour {
     // for Collision check
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.GetComponent<Collider2D>().CompareTag("Player"))
+        if (col.GetComponent<Collider2D>().CompareTag(Constant.TAG_PLAYER))
         {
             GetComponent<Enemy_Info>().HP -= Player_Data.Damage;
-            EventSP.GetComponent<Event_ScoreHP>().MinHP(50);
             //Debug.Log("Enemy_Move : 플레이어와 부딛힘");
         }
-        else if (col.GetComponent<Collider2D>().CompareTag("Missile"))
+        else if (col.GetComponent<Collider2D>().CompareTag(Constant.TAG_PLAYER_MISSILE))
         {
             GetComponent<Enemy_Info>().HP -= Player_Data.Damage;
             //Debug.Log("Enemy_Move : 미사일과 부딛힘");
@@ -151,7 +150,7 @@ public class Boss_Level1 : MonoBehaviour {
             {
                 FireEnabled = true;
             }
-            GameObject.Find("Player").GetComponent<Auto_Move>().AutoCheck = false;
+            GameObject.Find(Constant.NAME_PLAYER).GetComponent<Auto_Move>().AutoCheck = false;
         }
         if(Player_Data.HP <= 0)
         {

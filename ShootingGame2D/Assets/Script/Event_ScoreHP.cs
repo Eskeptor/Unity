@@ -14,18 +14,21 @@ public class Event_ScoreHP : MonoBehaviour {
 
     private Transform Boss;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         Screen.SetResolution(400, 600, false);
         BossDeathCheck = false;
-        Boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Transform>();
+        Boss = GameObject.FindGameObjectWithTag(Constant.TAG_BOSS).GetComponent<Transform>();
     }
 	
 	// Update is called once per frame
 	void Update () {
         Score.text = "Score : " + Player_Data.Score;
         HP.value = Player_Data.HP;
-        Boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Transform>();
+        if (!BossDeathCheck) 
+        {
+            Boss = GameObject.FindGameObjectWithTag(Constant.TAG_BOSS).GetComponent<Transform>();
+        }
         BossAreaCheck();
         GameOverCheck();
     }
@@ -33,11 +36,6 @@ public class Event_ScoreHP : MonoBehaviour {
     public void AddScore(int add)
     {
         Player_Data.Score += add;
-    }
-
-    public void MinHP(byte min)
-    {
-        Player_Data.HP -= min;
     }
 
     private void BossAreaCheck()
@@ -54,7 +52,7 @@ public class Event_ScoreHP : MonoBehaviour {
         if (Player_Data.HP <= 0)
         {
             Player_Data.HP = 0;
-            Player_Data.AutoSpeed = 0f;
+            Player.GetComponent<Auto_Move>().AutoCheck = false;
             Player.transform.Find("Main Camera").Find("GameOver Canvas").GetComponent<GameOver_Menu>().GameOverType = 0;
             Player.transform.Find("Aircraft Body").GetComponent<Player_Move>().Death = true;
             GameOver.transform.Find("Title").GetComponent<Text>().text = "게임 오버";
@@ -64,7 +62,7 @@ public class Event_ScoreHP : MonoBehaviour {
         }
         else if(BossDeathCheck)
         {
-            Player_Data.AutoSpeed = 0f;
+            Player.GetComponent<Auto_Move>().AutoCheck = false;
             Player.GetComponent<Transform>().Translate(0f, 0f, 0f);
             Player.transform.Find("Main Camera").Find("GameOver Canvas").GetComponent<GameOver_Menu>().GameOverType = 1;
             Player.transform.Find("Aircraft Body").GetComponent<Player_Move>().Death = true;
