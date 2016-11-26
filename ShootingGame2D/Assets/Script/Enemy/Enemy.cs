@@ -36,12 +36,6 @@ public class Enemy : MonoBehaviour {
         MPool.Create(MissileObject, MissileMaximumPool);
         Missile = new GameObject[MissileMaximumPool];
 
-        // All missile array initialize
-        for (int i = 0; i < MissileMaximumPool; i++)
-        {
-            Missile[i] = null;
-        }
-
         FireState = true;
         FireEnabled = false;
         ScoreCheck = false;

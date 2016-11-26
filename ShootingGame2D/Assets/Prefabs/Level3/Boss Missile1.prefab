@@ -40,7 +40,7 @@ GameObject:
   - 114: {fileID: 114000014241398590}
   m_Layer: 0
   m_Name: Boss Missile1
-  m_TagString: Untagged
+  m_TagString: Enemy Missile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -65,7 +65,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014193705696}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: -1.4541713, y: 5.453113, z: 0}
+  m_LocalPosition: {x: -0.41190147, y: 6.94, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_Children:
@@ -88,7 +88,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!58 &58000011903696456
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -116,7 +116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSpeed: 8
   MissileType: 1
-  Damage: 30
+  Damage: 50
 --- !u!212 &212000012316249976
 SpriteRenderer:
   m_ObjectHideFlags: 1

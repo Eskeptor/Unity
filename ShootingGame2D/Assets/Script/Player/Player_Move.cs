@@ -5,7 +5,7 @@ public class Player_Move : MonoBehaviour {
     /* Public Object */
     public float MoveSpeed = 3f;
     public GameObject Explosion;
-    public GameObject EventSP;
+    public GameObject PlayerEvent;
     [HideInInspector]
     public bool Death;
 
@@ -25,6 +25,10 @@ public class Player_Move : MonoBehaviour {
             Move();
             Move_Limit();
         }
+        if (Player_Data.Devmode == 1)
+        {
+            HiddenKey();
+        }
         DeadCheck();
     }
 
@@ -38,6 +42,14 @@ public class Player_Move : MonoBehaviour {
         if (Input.GetButton("Vertical"))
         {
             transform.Translate(0f, Input.GetAxis("Vertical") * MoveSpeed * Time.deltaTime, 0f);
+        }
+    }
+
+    void HiddenKey()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            PlayerEvent.GetComponent<Event_ScoreHP>().BossDeathCheck = true;
         }
     }
 

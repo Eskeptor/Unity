@@ -275,9 +275,20 @@ Prefab:
       propertyPath: PlayerType
       value: 
       objectReference: {fileID: 1296945671}
+    - target: {fileID: 114000010635828602, guid: 15cb1658f1ac9ec44973cc3af7cb91b1,
+        type: 2}
+      propertyPath: BossObject
+      value: 
+      objectReference: {fileID: 1000011549371152, guid: 52701f3b1d24cab47ac48ec4f4f5e7b3,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 15cb1658f1ac9ec44973cc3af7cb91b1, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &446329173 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000012250147444, guid: 15cb1658f1ac9ec44973cc3af7cb91b1,
+    type: 2}
+  m_PrefabInternal: {fileID: 446329172}
 --- !u!1001 &1296945670
 Prefab:
   m_ObjectHideFlags: 0
@@ -327,6 +338,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013566238510, guid: ff464be072fe9c94e8ca73bbc141b703,
+        type: 2}
+      propertyPath: EventSP
+      value: 
+      objectReference: {fileID: 446329173}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff464be072fe9c94e8ca73bbc141b703, type: 2}
   m_IsPrefabParent: 0

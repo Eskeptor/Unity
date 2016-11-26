@@ -6,21 +6,23 @@ public class Boss_Level3 : MonoBehaviour
     public GameObject Explosion1;               // Explosion object(When the boss1 died)
     public GameObject Explosion2;
     public GameObject Explosion3;
-    public GameObject MissileObject1;           // Boss2's missile object
+    public GameObject MissileObject1;           // Boss3's missile object
     public GameObject MissileObject2;
     public GameObject MissileObject3;
     public GameObject MissileObject4;
     //public GameObject HiddenMissileObject;    // Not implements!!
-    public Transform MissileLocation1;          // Boss2's missile fire location
+    public Transform MissileLocation1;          // Boss3's missile fire location
     public Transform MissileLocation2;
     public Transform MissileLocation3;
     public Transform MissileLocation4;
     public Transform MissileLocation5;
     public Transform MissileLocation6;
+    public Transform MissileLocation7;
+    public Transform MissileLocation8;
     //public Transform HiddenMissileLocation;   // Not implements!!
-    public int MissileMaximumPool = 6;          // Boss2's missile memory maximum pool
-    public int ExtraPool = 6;                   // Boss2's missile extra memory maximum pool
-    public float FireRateTime = 1f;            // Boss2's missile fire rate time
+    //public int MissileMaximumPool = 6;          // Boss3's missile memory maximum pool
+    //public int ExtraPool = 6;                   // Boss3's missile extra memory maximum pool
+    public float FireRateTime = 1f;            // Boss3's missile fire rate time
 
     /* Private Object */
     private bool FireEnabled;                       // By measuring the distance to fire a missile
@@ -37,8 +39,14 @@ public class Boss_Level3 : MonoBehaviour
     private GameObject[] Missile3;
     private GameObject[] Missile4;
     //private GameObject HMissile;                  // Not implements!!
-    private int Pattern;                            // Boss2's missile pattern
-    private int SemiPattern;                        // Boss2's missile semi pattern
+    private byte Pattern;                            // Boss2's missile pattern
+    private byte SemiPattern;                        // Boss2's missile semi pattern
+
+    private const byte Missile1Pool = 2;
+    private const byte Missile2Pool = 1;
+    private const byte Missile3Pool = 5;
+    private const byte Missile4Pool = 3;
+    private const byte SemiPool = 4;
 
     // When application quit, Memory clear
     void OnApplicationQuit()
@@ -56,30 +64,15 @@ public class Boss_Level3 : MonoBehaviour
         DownShift = GameObject.Find("DownShift");
 
         // Create Missile
-        MPool1.Create(MissileObject1, MissileMaximumPool * ExtraPool);
-        MPool2.Create(MissileObject2, MissileMaximumPool * ExtraPool);
-        MPool3.Create(MissileObject3, MissileMaximumPool);
-        MPool4.Create(MissileObject4, 4);
-        Missile1 = new GameObject[MissileMaximumPool * ExtraPool];
-        Missile2 = new GameObject[MissileMaximumPool * ExtraPool];
-        Missile3 = new GameObject[MissileMaximumPool];
-        Missile4 = new GameObject[4];
+        MPool1.Create(MissileObject1, Missile1Pool * SemiPool);
+        MPool2.Create(MissileObject2, Missile2Pool * SemiPool);
+        MPool3.Create(MissileObject3, Missile3Pool * SemiPool);
+        MPool4.Create(MissileObject4, Missile4Pool);
+        Missile1 = new GameObject[Missile1Pool * SemiPool];
+        Missile2 = new GameObject[Missile2Pool * SemiPool];
+        Missile3 = new GameObject[Missile3Pool * SemiPool];
+        Missile4 = new GameObject[Missile4Pool];
         //HMissile = HiddenMissileObject;
-
-        // All missile array initialize
-        for (int i = 0; i < Missile1.Length; i++)
-        {
-            Missile1[i] = null;
-            Missile2[i] = null;
-        }
-        for (int i = 0; i < Missile3.Length; i++)
-        {
-            Missile3[i] = null;
-        }
-        for (int i = 0; i < Missile4.Length; i++)
-        {
-            Missile4[i] = null;
-        }
 
         Score = false;
         FireState = true;
@@ -126,6 +119,9 @@ public class Boss_Level3 : MonoBehaviour
                 MPool1.RemoveItem(Missile1[i]);
                 Missile1[i] = null;
             }
+        }
+        for (int i = 0; i < Missile2.Length; i++)
+        {
             if (Missile2[i])
             {
                 Missile2[i].GetComponent<Collider2D>().enabled = true;
@@ -203,162 +199,78 @@ public class Boss_Level3 : MonoBehaviour
             {
                 //Debug.Log("SemiPattern : " + SemiPattern);
                 //Debug.Log("Pattern : " + Pattern);
-                // Boss2's missile pattern
+                // Boss3's missile pattern
                 switch (Pattern)
                 {
                     case 1:
                         {
                             Invoke("FireCycleControl", FireRateTime);
-                            if (Missile1[SemiPattern * MissileMaximumPool] == null && Missile1[SemiPattern * MissileMaximumPool + 1] == null
-                                && Missile1[SemiPattern * MissileMaximumPool + 2] == null && Missile1[SemiPattern * MissileMaximumPool + 3] == null
-                                && Missile1[SemiPattern * MissileMaximumPool + 4] == null && Missile1[SemiPattern * MissileMaximumPool + 5] == null)
+                            if (Missile1[SemiPattern * Missile1Pool] == null && Missile1[SemiPattern * Missile1Pool + 1] == null && Missile2[SemiPattern * Missile2Pool] == null)
                             {
-                                for (int i = SemiPattern * MissileMaximumPool; i < SemiPattern * MissileMaximumPool + ExtraPool; i++)
+                                for (int i = SemiPattern * Missile1Pool; i < SemiPattern * Missile1Pool + Missile1Pool; i++)
                                 {
                                     Missile1[i] = MPool1.NewItem();
                                 }
-                                Missile1[SemiPattern * MissileMaximumPool].transform.position = MissileLocation1.transform.position;
-                                Missile1[SemiPattern * MissileMaximumPool + 1].transform.position = MissileLocation2.transform.position;
-                                Missile1[SemiPattern * MissileMaximumPool + 2].transform.position = MissileLocation3.transform.position;
-                                Missile1[SemiPattern * MissileMaximumPool + 3].transform.position = MissileLocation4.transform.position;
-                                Missile1[SemiPattern * MissileMaximumPool + 4].transform.position = MissileLocation5.transform.position;
-                                Missile1[SemiPattern * MissileMaximumPool + 5].transform.position = MissileLocation6.transform.position;
+                                Missile2[SemiPattern] = MPool2.NewItem();
+                                Missile1[SemiPattern * Missile1Pool].transform.position = MissileLocation1.transform.position;
+                                Missile1[SemiPattern * Missile1Pool + 1].transform.position = MissileLocation3.transform.position;
+                                Missile2[SemiPattern * Missile2Pool].transform.position = MissileLocation2.transform.position;
                             }
                             FireState = false;
-                            Pattern = 2;
+                            if (SemiPattern < 3)
+                            {
+                                SemiPattern++;
+                            }
+                            else
+                            {
+                                Pattern++;
+                                SemiPattern = 0;
+                            }
                             break;
                         }
                     case 2:
                         {
                             Invoke("FireCycleControl", FireRateTime);
-                            if (Missile2[SemiPattern * MissileMaximumPool] == null && Missile2[SemiPattern * MissileMaximumPool + 1] == null
-                                && Missile2[SemiPattern * MissileMaximumPool + 2] == null && Missile2[SemiPattern * MissileMaximumPool + 3] == null
-                                && Missile2[SemiPattern * MissileMaximumPool + 4] == null && Missile2[SemiPattern * MissileMaximumPool + 5] == null)
+                            if (Missile3[SemiPattern * Missile3Pool] == null && Missile3[SemiPattern * Missile3Pool + 1] == null
+                                && Missile3[SemiPattern * Missile3Pool + 2] == null && Missile3[SemiPattern * Missile3Pool + 3] == null
+                                && Missile3[SemiPattern * Missile3Pool + 4] == null)
                             {
-                                for (int i = SemiPattern * MissileMaximumPool; i < SemiPattern * MissileMaximumPool + ExtraPool; i++)
+                                for (int i = SemiPattern * Missile3Pool; i < SemiPattern * Missile3Pool + SemiPool; i++)
                                 {
-                                    Missile2[i] = MPool2.NewItem();
+                                    Missile3[i] = MPool3.NewItem();
                                 }
-                                Missile2[SemiPattern * MissileMaximumPool].transform.position = MissileLocation1.transform.position;
-                                Missile2[SemiPattern * MissileMaximumPool + 1].transform.position = MissileLocation2.transform.position;
-                                Missile2[SemiPattern * MissileMaximumPool + 2].transform.position = MissileLocation3.transform.position;
-                                Missile2[SemiPattern * MissileMaximumPool + 3].transform.position = MissileLocation4.transform.position;
-                                Missile2[SemiPattern * MissileMaximumPool + 4].transform.position = MissileLocation5.transform.position;
-                                Missile2[SemiPattern * MissileMaximumPool + 5].transform.position = MissileLocation6.transform.position;
+                                Missile3[SemiPattern * Missile3Pool].transform.position = MissileLocation4.transform.position;
+                                Missile3[SemiPattern * Missile3Pool + 1].transform.position = MissileLocation5.transform.position;
+                                Missile3[SemiPattern * Missile3Pool + 2].transform.position = MissileLocation6.transform.position;
+                                Missile3[SemiPattern * Missile3Pool + 3].transform.position = MissileLocation7.transform.position;
+                                Missile3[SemiPattern * Missile3Pool + 4].transform.position = MissileLocation8.transform.position;
                             }
                             FireState = false;
-                            if (SemiPattern < 5)
-                            {
-                                SemiPattern++;
-                                Pattern = 1;
-                            }
-                            else
-                            {
-                                Pattern++;
-                                SemiPattern = 0;
-                            }
+                            Pattern++;
                             break;
                         }
                     case 3:
                         {
                             Invoke("FireCycleControl", FireRateTime);
-                            switch (SemiPattern)
+                            if (Missile4[0] == null && Missile4[1] == null && Missile4[2]) 
                             {
-                                case 0:
-                                    {
-                                        if (Missile3[0] == null && Missile3[1] == null)
-                                        {
-                                            for (int i = 0; i < 2; i++)
-                                            {
-                                                Missile3[i] = MPool3.NewItem();
-                                            }
-                                            Missile3[0].transform.position = new Vector3(MissileLocation2.transform.position.x, MissileLocation2.transform.position.y - 2.3f, 0f);
-                                            Missile3[1].transform.position = new Vector3(MissileLocation5.transform.position.x, MissileLocation5.transform.position.y - 2.3f, 0f);
-                                        }
-                                        break;
-                                    }
-                                case 1:
-                                    {
-                                        if (Missile3[2] == null && Missile3[3] == null)
-                                        {
-                                            for (int i = 2; i < 4; i++)
-                                            {
-                                                Missile3[i] = MPool3.NewItem();
-                                            }
-                                            Missile3[2].transform.position = new Vector3(MissileLocation3.transform.position.x, MissileLocation3.transform.position.y - 2.3f, 0f);
-                                            Missile3[3].transform.position = new Vector3(MissileLocation6.transform.position.x, MissileLocation6.transform.position.y - 2.3f, 0f);
-                                        }
-                                        break;
-                                    }
-                                case 2:
-                                    {
-                                        if (Missile3[4] == null && Missile3[5] == null)
-                                        {
-                                            for (int i = 4; i < 6; i++)
-                                            {
-                                                Missile3[i] = MPool3.NewItem();
-                                            }
-                                            Missile3[4].transform.position = new Vector3(MissileLocation1.transform.position.x, MissileLocation1.transform.position.y - 2.3f, 0f);
-                                            Missile3[5].transform.position = new Vector3(MissileLocation4.transform.position.x, MissileLocation4.transform.position.y - 2.3f, 0f);
-                                        }
-                                        break;
-                                    }
+                                for(int i = 0; i < Missile4Pool; i++)
+                                {
+                                    Missile4[i] = MPool4.NewItem();
+                                }
+                                Missile4[0].transform.position = new Vector3(MissileLocation1.transform.position.x, MissileLocation1.transform.position.y - 3f, 0f);
+                                Missile4[1].transform.position = new Vector3(MissileLocation2.transform.position.x, MissileLocation2.transform.position.y - 3f, 0f);
+                                Missile4[2].transform.position = new Vector3(MissileLocation3.transform.position.x, MissileLocation3.transform.position.y - 3f, 0f);
                             }
 
                             FireState = false;
-                            if (SemiPattern < 2)
-                            {
-                                SemiPattern++;
-                            }
-                            else
-                            {
-                                Pattern++;
-                                SemiPattern = 0;
-                            }
+                            Pattern++;
                             break;
                         }
-                    case 4:
+                    default:
                         {
-                            Invoke("FireCycleControl", FireRateTime);
-                            switch (SemiPattern)
-                            {
-                                case 0:
-                                    {
-                                        if (Missile4[0] == null && Missile4[1] == null)
-                                        {
-                                            for (int i = 0; i < 2; i++)
-                                            {
-                                                Missile4[i] = MPool4.NewItem();
-                                            }
-                                            Missile4[0].transform.position = MissileLocation1.transform.position;
-                                            Missile4[1].transform.position = MissileLocation6.transform.position;
-                                        }
-                                        break;
-                                    }
-                                case 1:
-                                    {
-                                        if (Missile4[2] == null && Missile4[3] == null)
-                                        {
-                                            for (int i = 2; i < 4; i++)
-                                            {
-                                                Missile4[i] = MPool4.NewItem();
-                                            }
-                                            Missile4[2].transform.position = MissileLocation3.transform.position;
-                                            Missile4[3].transform.position = MissileLocation4.transform.position;
-                                        }
-                                        break;
-                                    }
-                            }
-                            FireState = false;
-                            if (SemiPattern < 1)
-                            {
-                                SemiPattern++;
-                            }
-                            else
-                            {
-                                SemiPattern = 0;
-                                Pattern++;
-                            }
+                            Pattern = 1;
+                            SemiPattern = 0;
                             break;
                         }
                 }
@@ -366,39 +278,42 @@ public class Boss_Level3 : MonoBehaviour
         }
 
         // Returns missiles in memory pool
-        for (int i = 0; i < Missile1.Length; i++)
+        for (int i = 0; i < Missile3.Length; i++)
         {
-            if (Missile1[i])
+            if (i < Missile1.Length)
             {
-                if (Missile1[i].GetComponent<Collider2D>().enabled == false)
+                if (Missile1[i])
                 {
-                    Missile1[i].GetComponent<Collider2D>().enabled = true;
-                    MPool1.RemoveItem(Missile1[i]);
-                    Missile1[i] = null;
-                }
-            }
-            if (Missile2[i])
-            {
-                if (Missile2[i].GetComponent<Collider2D>().enabled == false)
-                {
-                    Missile2[i].GetComponent<Collider2D>().enabled = true;
-                    MPool2.RemoveItem(Missile2[i]);
-                    Missile2[i] = null;
-                }
-            }
-            if (i < 6)
-            {
-                if (Missile3[i])
-                {
-                    if (Missile3[i].GetComponent<Collider2D>().enabled == false)
+                    if (Missile1[i].GetComponent<Collider2D>().enabled == false)
                     {
-                        Missile3[i].GetComponent<Collider2D>().enabled = true;
-                        MPool3.RemoveItem(Missile3[i]);
-                        Missile3[i] = null;
+                        Missile1[i].GetComponent<Collider2D>().enabled = true;
+                        MPool1.RemoveItem(Missile1[i]);
+                        Missile1[i] = null;
                     }
                 }
             }
-            if (i < 4)
+            if (i < Missile2.Length)
+            {
+                if (Missile2[i])
+                {
+                    if (Missile2[i].GetComponent<Collider2D>().enabled == false)
+                    {
+                        Missile2[i].GetComponent<Collider2D>().enabled = true;
+                        MPool2.RemoveItem(Missile2[i]);
+                        Missile2[i] = null;
+                    }
+                }
+            }
+            if (Missile3[i])
+            {
+                if (Missile3[i].GetComponent<Collider2D>().enabled == false)
+                {
+                    Missile3[i].GetComponent<Collider2D>().enabled = true;
+                    MPool3.RemoveItem(Missile3[i]);
+                    Missile3[i] = null;
+                }
+            }
+            if (i < Missile4.Length)
             {
                 if (Missile4[i])
                 {
@@ -419,7 +334,7 @@ public class Boss_Level3 : MonoBehaviour
     private void FireCycleControl()
     {
         FireState = true;
-        if (Pattern >= 5)
+        if (Pattern >= 4)
         {
             Pattern = 1;
         }

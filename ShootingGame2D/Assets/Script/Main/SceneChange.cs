@@ -11,9 +11,10 @@ using UnityEngine.UI;
 
 public class SceneChange : MonoBehaviour {
     /* Public Object */
-    public Animator HowTo;              // HowToPlay animator
-    public Animator CharactorSelect;    // CharactorSelect animator
-    public GameObject Texts;            // Text group
+    public Animator HowToAni;              // HowToPlay animator
+    public Animator CharactorSelectAni;    // CharactorSelect animator
+    public GameObject CharactorSelect;            // Text group
+    public Image[] PlayerTypes;
 
     /* Private Object */
     private TextAsset PlayerCSV;            // for CSV -> Text
@@ -31,13 +32,13 @@ public class SceneChange : MonoBehaviour {
         }
 
         Screen.SetResolution(400, 600, false);      // Screen set resolution
-        HowTo.SetBool("CloseDown", false);
-        HowTo.SetBool("ButtonDown", false);
+        HowToAni.SetBool("CloseDown", false);
+        HowToAni.SetBool("ButtonDown", false);
     }
 
 	public void GameStart()
     {
-        CharactorSelect.SetBool("gameStart", true);
+        CharactorSelectAni.SetBool("gameStart", true);
     }
     public void GameStartType1()
     {
@@ -63,33 +64,37 @@ public class SceneChange : MonoBehaviour {
     }
     public void GameStartClose()
     {
-        CharactorSelect.SetBool("gameStart", false);
+        CharactorSelectAni.SetBool("gameStart", false);
     }
     public void GameStartMouseOver(int num)
     {
-        Texts.transform.Find("MissileType").GetComponent<Text>().text = "미사일 타입 : " + PlayerDataCSV_Spec[num - 1][Constant.PLAYER_CSV_TYPE];
-        Texts.transform.Find("MissileDamage").GetComponent<Text>().text = "미사일 데미지 : " + PlayerDataCSV_Spec[num - 1][Constant.PLAYER_CSV_DAMAGE];
-        Texts.transform.Find("FireRate").GetComponent<Text>().text = "연사 속도 : " + PlayerDataCSV_Spec[num - 1][Constant.PLAYER_CSV_FIRERATE];
-        Texts.transform.Find("PlayerHP").GetComponent<Text>().text = "비행기 체력 : " + PlayerDataCSV_Spec[num - 1][Constant.PLAYER_CSV_HP];
+        CharactorSelect.transform.Find("Texts").Find("MissileType").GetComponent<Text>().text = "미사일 타입 : " + PlayerDataCSV_Spec[num - 1][Constant.PLAYER_CSV_TYPE];
+        CharactorSelect.transform.Find("Texts").Find("MissileDamage").GetComponent<Text>().text = "미사일 데미지 : " + PlayerDataCSV_Spec[num - 1][Constant.PLAYER_CSV_DAMAGE];
+        CharactorSelect.transform.Find("Texts").Find("FireRate").GetComponent<Text>().text = "연사 속도 : " + PlayerDataCSV_Spec[num - 1][Constant.PLAYER_CSV_FIRERATE];
+        CharactorSelect.transform.Find("Texts").Find("PlayerHP").GetComponent<Text>().text = "비행기 체력 : " + PlayerDataCSV_Spec[num - 1][Constant.PLAYER_CSV_HP];
+        CharactorSelect.transform.Find("Airplane").GetComponent<Image>().sprite = PlayerTypes[num - 1].sprite;
+        CharactorSelect.transform.Find("Airplane").GetComponent<Image>().color = new Color(255, 255, 255, 255);
     }
     public void GameStartMouseRealease()
     {
-        Texts.transform.Find("MissileType").GetComponent<Text>().text = "미사일 타입 : ";
-        Texts.transform.Find("MissileDamage").GetComponent<Text>().text = "미사일 데미지 : ";
-        Texts.transform.Find("FireRate").GetComponent<Text>().text = "연사 속도 : ";
-        Texts.transform.Find("PlayerHP").GetComponent<Text>().text = "비행기 체력 : ";
+        CharactorSelect.transform.Find("Texts").Find("MissileType").GetComponent<Text>().text = "미사일 타입 : ";
+        CharactorSelect.transform.Find("Texts").Find("MissileDamage").GetComponent<Text>().text = "미사일 데미지 : ";
+        CharactorSelect.transform.Find("Texts").Find("FireRate").GetComponent<Text>().text = "연사 속도 : ";
+        CharactorSelect.transform.Find("Texts").Find("PlayerHP").GetComponent<Text>().text = "비행기 체력 : ";
+        CharactorSelect.transform.Find("Airplane").GetComponent<Image>().sprite = null;
+        CharactorSelect.transform.Find("Airplane").GetComponent<Image>().color = new Color(255, 255, 255, 0);
     }
 
     public void HowToPlay()
     {
-        HowTo.SetBool("CloseDown", false);
-        HowTo.SetBool("ButtonDown", true);
+        HowToAni.SetBool("CloseDown", false);
+        HowToAni.SetBool("ButtonDown", true);
     }
 
     public void HowToPlayClose()
     {
-        HowTo.SetBool("CloseDown", true);
-        HowTo.SetBool("ButtonDown", false);
+        HowToAni.SetBool("CloseDown", true);
+        HowToAni.SetBool("ButtonDown", false);
     }
 
     public void GameExit()

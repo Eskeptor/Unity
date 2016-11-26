@@ -36,8 +36,8 @@ public class Boss_Level2 : MonoBehaviour {
     private GameObject[] Missile3;
     private GameObject[] Missile4;
     //private GameObject HMissile;                  // Not implements!!
-    private int Pattern;                            // Boss2's missile pattern
-    private int SemiPattern;                        // Boss2's missile semi pattern
+    private byte Pattern;                            // Boss2's missile pattern
+    private byte SemiPattern;                        // Boss2's missile semi pattern
 
     // When application quit, Memory clear
     void OnApplicationQuit()
@@ -63,21 +63,6 @@ public class Boss_Level2 : MonoBehaviour {
         Missile3 = new GameObject[MissileMaximumPool];
         Missile4 = new GameObject[4];
         //HMissile = HiddenMissileObject;
-
-        // All missile array initialize
-        for (int i = 0; i < Missile1.Length; i++)
-        {
-            Missile1[i] = null;
-            Missile2[i] = null;
-        }
-        for (int i = 0; i < Missile3.Length; i++)
-        {
-            Missile3[i] = null;
-        }
-        for (int i = 0; i < Missile4.Length; i++)
-        {
-            Missile4[i] = null;
-        }
 
         Score = false;
         FireState = true;

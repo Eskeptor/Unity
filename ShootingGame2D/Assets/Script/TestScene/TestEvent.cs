@@ -9,18 +9,22 @@ public class TestEvent : MonoBehaviour {
     public GameObject Player;
     public GameObject GameOver;
     public float WarnningYpos = 11f;
+    public bool BossRound;
 
     [HideInInspector]
     public bool BossDeathCheck;
 
-    //private Transform Boss;
+    private Transform Boss;
 
     // Use this for initialization
     void Start()
     {
         Screen.SetResolution(400, 600, false);
         BossDeathCheck = false;
-        //Boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Transform>();
+        if(BossRound)
+        {
+            Boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Transform>();
+        }
     }
 
     // Update is called once per frame
@@ -28,8 +32,11 @@ public class TestEvent : MonoBehaviour {
     {
         Score.text = "Score : " + Player_Data.Score;
         HP.value = Player_Data.HP;
-        //Boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Transform>();
-        //BossAreaCheck();
+        if (BossRound)
+        {
+            Boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Transform>();
+            BossAreaCheck();
+        }
         GameOverCheck();
     }
 
@@ -43,14 +50,14 @@ public class TestEvent : MonoBehaviour {
         Player_Data.HP -= min;
     }
 
-    //private void BossAreaCheck()
-    //{
-    //    if (Boss.transform.position.y - Player.transform.position.y <= WarnningYpos)
-    //    {
-    //        Warnning.enabled = true;
-    //        Warnning.GetComponent<Animator>().SetBool("Warn", true);
-    //    }
-    //}
+    private void BossAreaCheck()
+    {
+        if (Boss.transform.position.y - Player.transform.position.y <= WarnningYpos)
+        {
+            Warnning.enabled = true;
+            Warnning.GetComponent<Animator>().SetBool("Warn", true);
+        }
+    }
 
     private void GameOverCheck()
     {

@@ -32,4 +32,6 @@ static class Constant
     public const string TAG_ENEMY = "Enemy";
     public const string TAG_ENEMY_MISSILE = "Enemy Missile";
     public const string TAG_BOSS = "Boss";
+
+    public const string COMMAND_DEVMODE = "Dev-mode";
 }
