@@ -1,18 +1,18 @@
 # Welcome to my "2D Shooting Game Project(using C#)"
 ## About this project
 My school works project.
-## What's New? (Last updated 2016.11.19)
+## What's New? (Last updated 2016.11.25)
 ```
- 1) Add Enemy3, Enemy4
- 2) Change image(Enemy1, Enemy2)
- 3) Add new enemy move pattern
- 4) Add Level3(but not implement boss3)
+ 1) Add Level3 Boss sprite(not implement Boss pattern)
+ 2) Fix bug(When the player died, enemy did not stop the attack)
+ 3) Divide the player type(Type1 : red airplane, Type2 : blue airplane)
 ```
 ## Next Updates
 ```
- 1) Implement another game level design
+ 1) Implement another game level
  2) Optimize all codes
  3) Add weapon type
+ 4) Implement game level editor(Working)
 ```
 ## Development environment
 #### 1st environment
