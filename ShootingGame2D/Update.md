@@ -3,6 +3,7 @@
  1) Add Enemy3, Enemy4
  2) Change image(Enemy1, Enemy2)
  3) Add new enemy move pattern
+ 4) Add Level3(but not implement boss3)
 ```
 ## Update 2016.11.17
 ```
