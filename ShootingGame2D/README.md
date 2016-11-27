@@ -1,11 +1,10 @@
 # Welcome to my "2D Shooting Game Project(using C#)"
 ## About this project
 My school works project.
-## What's New? (Last updated 2016.11.25)
+## What's New? (Last updated 2016.11.26)
 ```
- 1) Add Level3 Boss sprite(not implement Boss pattern)
- 2) Fix bug(When the player died, enemy did not stop the attack)
- 3) Divide the player type(Type1 : red airplane, Type2 : blue airplane)
+ 1) Add Level3 Boss pattern(but there is a bug in boss3)
+ 2) Implement console mode(press key ` in the main window)
 ```
 ## Next Updates
 ```
@@ -36,6 +35,7 @@ My school works project.
  Left : Arrow Left
  Right : Arrow Right
  A : Fire
+ ` : Console(only main window) (but there is still no functionality)
 ```
 ## Game ScreenShot
 ![homepage](./ReadmeImage/ScreenShot01.PNG)
