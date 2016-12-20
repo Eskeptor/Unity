@@ -1,10 +1,14 @@
 # Welcome to my "2D Shooting Game Project(using C#)"
 ## About this project
-My school works project.
-## What's New? (Last updated 2016.11.26)
+This is my personal project.
+## What's New? (Last updated 2016.12.21)
 ```
- 1) Add Level3 Boss pattern(but there is a bug in boss3)
- 2) Implement console mode(press key ` in the main window)
+ 1) Fix Level3 Boss pattern
+ 2) Fix Console clear function
+ 3) Fix player did not die(When hit more than four missiles)
+ 4) Implement game level editor(Alpha version and editor has not been applied to the game menu)
+ 5) HP(Enemy & Player) byte → int
+ 6) Change the Unity Engine Version (5.4.2f2 → 5.5.0f3)
 ```
 ## Next Updates
 ```
@@ -46,4 +50,4 @@ My school works project.
  (Reference Copyright folder)
 ```
 ## Good Bye!!
-Compiled by Unity Personal 5.4.2f2 and Visual Studio 2015 C#
+Compiled by Unity Personal 5.5.0f3 and Visual Studio 2015 C#
