@@ -1,4 +1,4 @@
-## Update 2016.11.25
+## Update 2016.11.26
 ```
  1) Add Level3 Boss pattern(but there is a bug in boss3)
  2) Implement console mode(press key ` in the main window)
