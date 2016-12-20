@@ -1,5 +1,10 @@
 ## Update 2016.11.25
 ```
+ 1) Add Level3 Boss pattern(but there is a bug in boss3)
+ 2) Implement console mode(press key ` in the main window)
+```
+## Update 2016.11.25
+```
  1) Add Level3 Boss sprite(not implement Boss pattern)
  2) Fix bug(When the player died, enemy did not stop the attack)
  3) Divide the player type(Type1 : red airplane, Type2 : blue airplane)
