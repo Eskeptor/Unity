@@ -112,7 +112,7 @@ public class SceneChange : MonoBehaviour {
         if (type <= PlayerDataCSV.Length - 1) 
         {
             Player_Data.Type = byte.Parse(PlayerDataCSV_Spec[type - 1][Constant.PLAYER_CSV_TYPE]);
-            Player_Data.Damage = int.Parse(PlayerDataCSV_Spec[type - 1][Constant.PLAYER_CSV_DAMAGE]);
+            Player_Data.Damage = byte.Parse(PlayerDataCSV_Spec[type - 1][Constant.PLAYER_CSV_DAMAGE]);
             Player_Data.FireRate = float.Parse(PlayerDataCSV_Spec[type - 1][Constant.PLAYER_CSV_FIRERATE]);
             Player_Data.HP = Player_Data.Init_HP = byte.Parse(PlayerDataCSV_Spec[type - 1][Constant.PLAYER_CSV_HP]);
             return true;

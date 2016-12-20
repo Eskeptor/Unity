@@ -19,6 +19,7 @@ public class Event_ScoreHP : MonoBehaviour {
         Screen.SetResolution(400, 600, false);
         BossDeathCheck = false;
         Boss = GameObject.FindGameObjectWithTag(Constant.TAG_BOSS).GetComponent<Transform>();
+        HP.maxValue = Player_Data.Init_HP;
     }
 	
 	// Update is called once per frame
@@ -31,6 +32,7 @@ public class Event_ScoreHP : MonoBehaviour {
         }
         BossAreaCheck();
         GameOverCheck();
+        //Debug.Log("HP : " + Player_Data.HP);
     }
 
     public void AddScore(int add)

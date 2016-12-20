@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour {
     public int MissileMaximumPool = 5;  // Enemy's missile memory maximum pool
     public float FireRateTime = 1f;    // Enemy's missile fire rate time
     [HideInInspector]
-    public int HP;
+    public byte HP;
     [HideInInspector]
     public int Score;
 

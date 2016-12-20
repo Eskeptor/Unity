@@ -44,7 +44,7 @@ public class Enemy_Create : MonoBehaviour {
                         // initialization Enemys Object's Enemy_Info
                         if (EnemyObject[j].GetComponent<Enemy_Info>().Type == byte.Parse(EnemyDataCSV_Spec[k][Constant.ENEMY_CSV_TYPE]))
                         {
-                            Enemys[j, i - 1].GetComponent<Enemy_Info>().HP = byte.Parse(EnemyDataCSV_Spec[k][Constant.ENEMY_CSV_HP]);
+                            Enemys[j, i - 1].GetComponent<Enemy_Info>().HP = int.Parse(EnemyDataCSV_Spec[k][Constant.ENEMY_CSV_HP]);
                             Enemys[j, i - 1].GetComponent<Enemy_Info>().Score = int.Parse(EnemyDataCSV_Spec[k][Constant.ENEMY_CSV_SCORE]);
                         }
                     }

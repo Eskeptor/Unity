@@ -10,7 +10,7 @@ using System.Collections;
 public class Enemy_Missile : MonoBehaviour {
     public float MoveSpeed = 8f;
     public byte MissileType = 1;
-    public int Damage = 30;
+    public byte Damage = 3;
 
     private Vector3 GoalPos;
     private float Angle;
@@ -94,7 +94,7 @@ public class Enemy_Missile : MonoBehaviour {
                         {
                             GoalPos = -(PlayerPos.transform.position - gameObject.transform.position).normalized;
                             Angle = Mathf.Atan2(GoalPos.y, GoalPos.x) * Mathf.Rad2Deg;
-                            if(Mathf.Abs(PlayerPos.transform.position.y - gameObject.transform.position.y) <= 2.5f)
+                            if (Mathf.Abs(PlayerPos.transform.position.y - transform.position.y) <= 3.5f)
                                 Locked = false;
                         }
                     }

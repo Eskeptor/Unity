@@ -12,6 +12,7 @@ TagManager:
   - EventSP
   - New Tag
   - Boss
+  - InputBox
   layers:
   - Default
   - TransparentFX

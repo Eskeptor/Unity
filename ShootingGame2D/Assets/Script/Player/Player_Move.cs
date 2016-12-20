@@ -70,12 +70,12 @@ public class Player_Move : MonoBehaviour {
     {
         if (col.GetComponent<Collider2D>().CompareTag(Constant.TAG_ENEMY) || col.GetComponent<Collider2D>().CompareTag(Constant.TAG_BOSS))
         {
-            Player_Data.HP -= 50;
+            Player_Data.HP -= 5;
             //Debug.Log("Player_Move : 적과 부딛힘");
         }
         if (col.GetComponent<Collider2D>().CompareTag(Constant.TAG_ENEMY_MISSILE))
         {
-            Player_Data.HP -= (byte)col.GetComponent<Enemy_Missile>().Damage;
+            Player_Data.HP -= col.GetComponent<Enemy_Missile>().Damage;
             //Debug.Log("Player_Move : 적 미사일과 부딛힘");
         }
     }

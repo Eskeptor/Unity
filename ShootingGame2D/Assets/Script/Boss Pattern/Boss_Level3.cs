@@ -235,7 +235,7 @@ public class Boss_Level3 : MonoBehaviour
                                 && Missile3[SemiPattern * Missile3Pool + 2] == null && Missile3[SemiPattern * Missile3Pool + 3] == null
                                 && Missile3[SemiPattern * Missile3Pool + 4] == null)
                             {
-                                for (int i = SemiPattern * Missile3Pool; i < SemiPattern * Missile3Pool + SemiPool; i++)
+                                for (int i = SemiPattern * Missile3Pool; i < SemiPattern * Missile3Pool + Missile3Pool; i++)
                                 {
                                     Missile3[i] = MPool3.NewItem();
                                 }
@@ -246,13 +246,22 @@ public class Boss_Level3 : MonoBehaviour
                                 Missile3[SemiPattern * Missile3Pool + 4].transform.position = MissileLocation8.transform.position;
                             }
                             FireState = false;
+                            if (SemiPattern < 3)
+                            {
+                                SemiPattern++;
+                            }
+                            else
+                            {
+                                Pattern++;
+                                SemiPattern = 0;
+                            }
                             Pattern++;
                             break;
                         }
                     case 3:
                         {
                             Invoke("FireCycleControl", FireRateTime);
-                            if (Missile4[0] == null && Missile4[1] == null && Missile4[2]) 
+                            if (Missile4[0] == null && Missile4[1] == null && Missile4[2] == null) 
                             {
                                 for(int i = 0; i < Missile4Pool; i++)
                                 {

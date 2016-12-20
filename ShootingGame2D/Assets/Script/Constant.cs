@@ -34,4 +34,7 @@ static class Constant
     public const string TAG_BOSS = "Boss";
 
     public const string COMMAND_DEVMODE = "Dev-mode";
+
+    public const float EDITOR_MAX_YPOS = 20f;
+    public const float EDITOR_MIN_YPOS = -0.1f;
 }
