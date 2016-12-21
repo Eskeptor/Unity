@@ -107,6 +107,11 @@ public class SceneChange : MonoBehaviour {
         SceneManager.LoadScene("TestScene");
     }
 
+    public void MapEditor()
+    {
+        SceneManager.LoadScene("GameEditor");
+    }
+
     private bool PlayerInit(int type)
     {
         if (type <= PlayerDataCSV.Length - 1) 

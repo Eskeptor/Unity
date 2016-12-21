@@ -52,12 +52,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4000011802383788}
-  - component: {fileID: 114000010844254292}
-  - component: {fileID: 50000012017852074}
   - component: {fileID: 61000014134958294}
-  - component: {fileID: 82000011873023738}
   - component: {fileID: 114000010194128232}
-  - component: {fileID: 114000014135775036}
+  - component: {fileID: 114703714274112716}
   m_Layer: 0
   m_Name: Enemy4
   m_TagString: Enemy
@@ -205,26 +202,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010456579150}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!50 &50000012017852074
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012809352606}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!61 &61000014134958294
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -239,86 +216,6 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0.09}
   serializedVersion: 2
   m_Size: {x: 0.94, y: 1}
---- !u!82 &82000011873023738
-AudioSource:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012809352606}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: d27daeaf6fad5f54a9b9769c5e090ccb, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 9.270222
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
 --- !u!114 &114000010194128232
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -333,25 +230,6 @@ MonoBehaviour:
   Score: 15
   HP: 7
   Type: 4
---- !u!114 &114000010844254292
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012809352606}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dc6bc5285af1824a97c60fa0f7f5b07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Explosion: {fileID: 1000010456579150}
-  MissileObject: {fileID: 1000011520069198, guid: 8ef9853c4e1160b4c9241081bd72e4b6,
-    type: 2}
-  MissileLocation: {fileID: 4000010746617920}
-  MissileMaximumPool: 5
-  FireRateTime: 1
-  HP: 0
-  Score: 0
 --- !u!114 &114000012340220208
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -373,7 +251,7 @@ MonoBehaviour:
   _scattering: 1
   _octaves: 3
   _quality: 1
---- !u!114 &114000014135775036
+--- !u!114 &114703714274112716
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -381,10 +259,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000012809352606}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 036ef94230cd5334ead7b2ab20b07369, type: 3}
+  m_Script: {fileID: 11500000, guid: c772b0689d83e4249907b1425b07205a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveType: 2
 --- !u!198 &198000010806218800
 ParticleSystem:
   m_ObjectHideFlags: 1

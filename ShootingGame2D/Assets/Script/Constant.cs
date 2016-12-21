@@ -26,6 +26,7 @@ static class Constant
 
     public const string NAME_PLAYER = "PlayerType";
     public const string NAME_ENEMY_MISSILE = "Enemy Missile Image";
+    public const string NAME_EDITOR_TOOLS = "ToolsUI";
 
     public const string TAG_PLAYER = "Player";
     public const string TAG_PLAYER_MISSILE = "Missile";
@@ -37,4 +38,5 @@ static class Constant
 
     public const float EDITOR_MAX_YPOS = 20f;
     public const float EDITOR_MIN_YPOS = -0.1f;
+    
 }

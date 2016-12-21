@@ -5,16 +5,21 @@ using UnityEngine.UI;
 public class DevConsole : MonoBehaviour {
     public GameObject Console;
     public GameObject Title;
-    public GameObject DevButton;
+    private GameObject[] DevButton;
     private bool Activated;
     private string[] Command;
 
 	// Use this for initialization
 	void Start () {
         Console.SetActive(false);
-        DevButton.SetActive(false);
         Activated = false;
         Command = new string[2];
+
+        DevButton = GameObject.FindGameObjectsWithTag("Dev");
+        for(int i = 0; i < DevButton.Length; i++)
+        {
+            DevButton[i].SetActive(false);
+        }
     }
 	
 	// Update is called once per frame
@@ -31,13 +36,19 @@ public class DevConsole : MonoBehaviour {
             {
                 Player_Data.Devmode = 0;
                 Title.GetComponent<Text>().text = "Space Shooter";
-                DevButton.SetActive(true);
+                for (int i = 0; i < DevButton.Length; i++)
+                {
+                    DevButton[i].SetActive(false);
+                }
             }
             else if (Command[1] == "1")
             {
                 Player_Data.Devmode = 1;
                 Title.GetComponent<Text>().text = "개발자 모드";
-                DevButton.SetActive(true);
+                for (int i = 0; i < DevButton.Length; i++)
+                {
+                    DevButton[i].SetActive(true);
+                }
             }
         }
         Console.GetComponent<InputField>().text = "";

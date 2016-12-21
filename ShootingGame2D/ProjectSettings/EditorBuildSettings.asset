@@ -8,6 +8,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scene/Opening.unity
   - enabled: 1
+    path: Assets/Scene/GameEditor.unity
+  - enabled: 1
     path: Assets/Scene/Main.unity
   - enabled: 1
     path: Assets/Scene/Level1.unity

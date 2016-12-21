@@ -10,9 +10,9 @@ TagManager:
   - Sidebar
   - Enemy Missile
   - EventSP
-  - New Tag
   - Boss
   - InputBox
+  - Dev
   layers:
   - Default
   - TransparentFX
