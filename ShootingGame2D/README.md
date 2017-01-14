@@ -1,10 +1,11 @@
 # Welcome to my "2D Shooting Game Project(using C#)"
 ## About this project
 This is my personal project.
-## What's New? (Last updated 2016.12.22)
+## What's New? (Last updated 2017.1.14)
 ```
- 1) Implement game level editor(Possible in developer mode only)
- 2) Optimize some codes(divided properly)
+ 1) Move the method to measure the distance(Boss Pattern → Event_ScoreHP)
+ 2) Bug fixed(some enemies did not attack)
+ 3) Damage and FireRate were linked to the EnemyCSV
 ```
 ## Next Updates
 ```
