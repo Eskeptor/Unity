@@ -1,4 +1,5 @@
-﻿public static class Player_Data {
+﻿public static class Player_Data
+{
     public static byte Type = 1;            // missile type
     public static int Damage = 1;          // missile damage
     public static float FireRate = 0.3f;    // missile fire rate

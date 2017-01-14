@@ -1,7 +1,8 @@
 ﻿using UnityEngine.SceneManagement;
 using UnityEngine;
 
-public class Editor_SceneChange : MonoBehaviour {
+public class Editor_SceneChange : MonoBehaviour
+{
     public GameObject MenuUI;
     private bool Check;
     void Start()

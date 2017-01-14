@@ -16,9 +16,6 @@ public class Boss_Level1 : MonoBehaviour {
     public float FireRateTime = 1f;     // Boss1's missile fire rate time
 
     /* Private Object */
-    private bool FireEnabled;                       // By measuring the distance to fire a missile
-    private bool FireState;                         // for Fire cycle control
-    private bool Score;                             // Check whether boss gave the score
     private GameObject EventSP;                     // for Event_ScoreHP
     private GameObject DownShift;                   // for Player's DownShift
     private MemoryPool MPool1 = new MemoryPool();   // for Boss1's missile memory pool
@@ -49,16 +46,15 @@ public class Boss_Level1 : MonoBehaviour {
         Missile1 = new GameObject[MissileMaximumPool * 2];
         Missile2 = new GameObject[MissileMaximumPool / 2];
         Missile3 = new GameObject[MissileMaximumPool / 2];
-        
-        Score = false;
-        FireState = true;
-        FireEnabled = false;
+
+        GetComponent<Enemy_Info>().ScoreCheck = false;
+        GetComponent<Enemy_Info>().FireState = true;
+        GetComponent<Enemy_Info>().FireEnabled = false;
         Pattern = 1;
     }
 	
 	// Update is called once per frame
 	void Update () {
-        DistanceChecker();
         IsDead();
         MissileFire();
 	}
@@ -114,13 +110,13 @@ public class Boss_Level1 : MonoBehaviour {
     {
         if (GetComponent<Enemy_Info>().HP <= 0)
         {
-            if (!Score)
+            if (!GetComponent<Enemy_Info>().ScoreCheck)
             {
-                FireEnabled = false;
+                GetComponent<Enemy_Info>().FireEnabled = false;
                 GetComponent<Enemy_Info>().HP = 0;
                 EventSP.GetComponent<Event_ScoreHP>().AddScore(GetComponent<Enemy_Info>().Score);
                 GetComponent<AudioSource>().Play();
-                Score = true;
+                GetComponent<Enemy_Info>().ScoreCheck = true;
             }
             Explosion1.SetActive(true);
             Explosion2.SetActive(true);
@@ -130,30 +126,12 @@ public class Boss_Level1 : MonoBehaviour {
         }
     }
 
-    // Distance check between player and enemy
-    void DistanceChecker()
-    {
-        if(transform.position.y-DownShift.transform.position.y < Constant.RECOGNIZED_PLAYER - 2f)
-        {
-            if(GetComponent<Enemy_Info>().HP > 0)
-            {
-                FireEnabled = true;
-            }
-            GameObject.Find(Constant.NAME_PLAYER).GetComponent<Auto_Move>().AutoCheck = false;
-        }
-        if(Player_Data.HP <= 0)
-        {
-            FireState = false;
-            FireEnabled = false;
-        }
-    }
-
     // Missile fire
     void MissileFire()
     {
-        if (FireEnabled)
+        if (GetComponent<Enemy_Info>().FireEnabled)
         {
-            if (FireState)
+            if (GetComponent<Enemy_Info>().FireState)
             {
                 // Boss1's missile pattern
                 switch (Pattern)
@@ -172,7 +150,7 @@ public class Boss_Level1 : MonoBehaviour {
                                 Missile1[2].transform.position = MissileLocation3.transform.position;
                                 Missile1[3].transform.position = MissileLocation4.transform.position;
                             }
-                            FireState = false;
+                            GetComponent<Enemy_Info>().FireState = false;
                             break;
                         }
                     case 2:
@@ -189,7 +167,7 @@ public class Boss_Level1 : MonoBehaviour {
                                 Missile1[6].transform.position = MissileLocation3.transform.position;
                                 Missile1[7].transform.position = MissileLocation4.transform.position;
                             }
-                            FireState = false;
+                            GetComponent<Enemy_Info>().FireState = false;
                             break;
                         }
                     case 3:
@@ -204,7 +182,7 @@ public class Boss_Level1 : MonoBehaviour {
                                 Missile2[0].transform.position = MissileLocation1.transform.position;
                                 Missile2[1].transform.position = MissileLocation4.transform.position;
                             }
-                            FireState = false;
+                            GetComponent<Enemy_Info>().FireState = false;
                             break;
                         }
                     case 4:
@@ -219,7 +197,7 @@ public class Boss_Level1 : MonoBehaviour {
                                 Missile3[0].transform.position = MissileLocation2.transform.position;
                                 Missile3[1].transform.position = MissileLocation3.transform.position;
                             }
-                            FireState = false;
+                            GetComponent<Enemy_Info>().FireState = false;
                             break;
                         }
                 }
@@ -265,7 +243,7 @@ public class Boss_Level1 : MonoBehaviour {
     // Fire Cycle Control
     private void FireCycleControl()
     {
-        FireState = true;
+        GetComponent<Enemy_Info>().FireState = true;
         ++Pattern;  // next pattern
         if (Pattern >= 5)
         {

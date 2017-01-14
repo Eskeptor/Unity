@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class Player_Missile : MonoBehaviour {
-
     public float MoveSpeed = 20f;
 
 	// Update is called once per frame
@@ -22,7 +21,6 @@ public class Player_Missile : MonoBehaviour {
         if (col.GetComponent<Collider2D>().CompareTag(Constant.TAG_ENEMY) || col.GetComponent<Collider2D>().CompareTag(Constant.TAG_BOSS))
         {
             GetComponent<Collider2D>().enabled = false;
-            //Debug.Log("Missile_Move : 미사일이 적과 부딛힘");
         }
 
         // When missile hit top bar

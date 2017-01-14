@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 
-// This class is background effect class
-public class Background : MonoBehaviour {
+/* 마우스에 따라서 배경화면이 따라 움직이는 기능 */
+public class Background : MonoBehaviour
+{
     /* Public Object */
-    public float RotateSpeed = 0.1f;    // Screen rotate speed
+    public float RotateSpeed = 0.1f;    // 회전 속도
 	
-	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
         Vector3 MousePos = Input.mousePosition; 
         Vector3 BackroundPos = transform.position; 
         Vector3 WorldPos = Camera.main.ScreenToWorldPoint(MousePos);

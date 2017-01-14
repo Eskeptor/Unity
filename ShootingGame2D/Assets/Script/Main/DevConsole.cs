@@ -2,15 +2,19 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class DevConsole : MonoBehaviour {
+public class DevConsole : MonoBehaviour
+{
+    /* public objects */
     public GameObject Console;
     public GameObject Title;
     private GameObject[] DevButton;
+
+    /* private objects */
     private bool Activated;
     private string[] Command;
 
-	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
         Console.SetActive(false);
         Activated = false;
         Command = new string[2];
@@ -22,8 +26,8 @@ public class DevConsole : MonoBehaviour {
         }
     }
 	
-	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
         KeydownConsole();
     }
 

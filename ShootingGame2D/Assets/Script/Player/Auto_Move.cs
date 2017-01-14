@@ -1,18 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Auto_Move : MonoBehaviour {
-    /* Public Object */
+public class Auto_Move : MonoBehaviour
+{
+    /* Public Objects */
     [HideInInspector]
-    public bool AutoCheck;              // player auto move enabler
+    public bool AutoCheck;            
 
-	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
         AutoCheck = true;
     }
 	
-	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
         Move();
     }
 

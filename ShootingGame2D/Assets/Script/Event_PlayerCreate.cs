@@ -2,15 +2,12 @@
 using System.Collections;
 
 public class Event_PlayerCreate : MonoBehaviour {
-    //public GameObject PlayerType1;
-    //public GameObject PlayerType2;
     public GameObject PlayerType;
     public GameObject Type1;
     public GameObject Type2;
 
     private GameObject Player;
 
-    // Use this for initialization
     void Start () {
         if (Player_Data.Type == 1)
         {

@@ -6,19 +6,18 @@ public class Player_Move : MonoBehaviour {
     public float MoveSpeed = 3f;
     public GameObject Explosion;
     public GameObject PlayerEvent;
+    public GameObject Down;
     [HideInInspector]
     public bool Death;
 
     /* Private Object */
     private const float EnabledPosX = 3.05f;
 
-	// Use this for initialization
 	void Start () {
         Death = false;
         Explosion.SetActive(false);
     }
 	
-	// Update is called once per frame
 	void Update () {
         if (!Death)
         {
@@ -56,13 +55,17 @@ public class Player_Move : MonoBehaviour {
     // Limit Position
     void Move_Limit()
     {
-        if (transform.position.x < -EnabledPosX)
+        if (transform.position.x < -Constant.PLAYER_ENABLED_X)
         {
-            transform.position = new Vector3(-EnabledPosX, transform.position.y, 0f);
+            transform.position = new Vector3(-Constant.PLAYER_ENABLED_X, transform.position.y, 0f);
         }
-        if (transform.position.x > EnabledPosX)
+        if (transform.position.x > Constant.PLAYER_ENABLED_X)
         {
-            transform.position = new Vector3(EnabledPosX, transform.position.y, 0f);
+            transform.position = new Vector3(Constant.PLAYER_ENABLED_X, transform.position.y, 0f);
+        }
+        if (transform.position.y - Down.transform.position.y < Constant.PLAYER_ENABLED_Y_DOWN)
+        {
+            transform.position = new Vector3(transform.position.x, Down.transform.position.y + 1f, 0f);
         }
     }
 
@@ -71,12 +74,10 @@ public class Player_Move : MonoBehaviour {
         if (col.GetComponent<Collider2D>().CompareTag(Constant.TAG_ENEMY) || col.GetComponent<Collider2D>().CompareTag(Constant.TAG_BOSS))
         {
             Player_Data.HP -= 5;
-            //Debug.Log("Player_Move : 적과 부딛힘");
         }
         if (col.GetComponent<Collider2D>().CompareTag(Constant.TAG_ENEMY_MISSILE))
         {
             Player_Data.HP -= col.GetComponent<Enemy_Missile>().Damage;
-            //Debug.Log("Player_Move : 적 미사일과 부딛힘");
         }
     }
 

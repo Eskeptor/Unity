@@ -2,7 +2,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Editor_ConvertCSV : MonoBehaviour {
+public class Editor_ConvertCSV : MonoBehaviour
+{
 
     private GameObject[] Obj;
     private string SavePath;
@@ -10,7 +11,8 @@ public class Editor_ConvertCSV : MonoBehaviour {
     private System.IO.DirectoryInfo dirCheck;
 
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
         Screen.SetResolution(400, 600, false);
 
         SavePath = Application.persistentDataPath + "/CustomMaps/";

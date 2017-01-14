@@ -15,13 +15,14 @@ public class TestEvent : MonoBehaviour {
     public bool BossDeathCheck;
 
     private Transform Boss;
+    private bool Invinc;
 
-    // Use this for initialization
     void Start()
     {
         Screen.SetResolution(400, 600, false);
         BossDeathCheck = false;
-        if(BossRound)
+        Invinc = false;
+        if (BossRound)
         {
             Boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Transform>();
         }
@@ -38,6 +39,7 @@ public class TestEvent : MonoBehaviour {
             BossAreaCheck();
         }
         GameOverCheck();
+        Invincibility();
     }
 
     public void AddScore(int add)
@@ -56,6 +58,19 @@ public class TestEvent : MonoBehaviour {
         {
             Warnning.enabled = true;
             Warnning.GetComponent<Animator>().SetBool("Warn", true);
+        }
+        if (Boss.transform.position.y - Player.transform.position.y < Constant.RECOGNIZED_PLAYER - 3f)
+        {
+            if(Boss.GetComponent<Enemy_Info>().HP >0)
+            {
+                Boss.GetComponent<Enemy_Info>().FireEnabled = true;
+            }
+            GameObject.Find(Constant.NAME_PLAYER).GetComponent<Auto_Move>().AutoCheck = false;
+        }
+        if(Player_Data.HP<=0)
+        {
+            Boss.GetComponent<Enemy_Info>().FireEnabled = false;
+            Boss.GetComponent<Enemy_Info>().FireState = false;
         }
     }
 
@@ -82,6 +97,18 @@ public class TestEvent : MonoBehaviour {
             GameOver.transform.Find("LastScore").GetComponent<Text>().text = "최종점수 : " + Player_Data.Score;
             GameOver.transform.Find("Restart").GetComponentInChildren<Text>().text = "다음단계";
             GameOver.GetComponent<Animator>().SetBool("GameOver", true);
+        }
+    }
+
+    private void Invincibility()
+    {
+        if (Input.GetKeyUp(KeyCode.P))
+        {
+            Invinc = !Invinc;
+        }
+        if (Invinc)
+        {
+            Player_Data.HP = 90;
         }
     }
 }

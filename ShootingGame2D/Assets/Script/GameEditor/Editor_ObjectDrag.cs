@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Editor_Test : MonoBehaviour {
+public class Editor_ObjectDrag : MonoBehaviour
+{
     private Vector2 MousePos;
     private GameObject Enemy;
     private bool Click;

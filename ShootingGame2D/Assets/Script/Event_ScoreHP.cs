@@ -2,27 +2,26 @@
 using UnityEngine.UI;
 
 public class Event_ScoreHP : MonoBehaviour {
+    /* public object */
     public Text Score;
     public Slider HP;
     public Text Warnning;
     public GameObject Player;
     public GameObject GameOver;
     public float WarnningYpos = 11f;
-
     [HideInInspector]
     public bool BossDeathCheck;
 
+    /* private object */
     private Transform Boss;
 
-    // Use this for initialization
     void Start () {
         Screen.SetResolution(400, 600, false);
         BossDeathCheck = false;
         Boss = GameObject.FindGameObjectWithTag(Constant.TAG_BOSS).GetComponent<Transform>();
         HP.maxValue = Player_Data.Init_HP;
     }
-	
-	// Update is called once per frame
+
 	void Update () {
         Score.text = "Score : " + Player_Data.Score;
         HP.value = Player_Data.HP;
@@ -32,7 +31,6 @@ public class Event_ScoreHP : MonoBehaviour {
         }
         BossAreaCheck();
         GameOverCheck();
-        //Debug.Log("HP : " + Player_Data.HP);
     }
 
     public void AddScore(int add)
@@ -46,6 +44,19 @@ public class Event_ScoreHP : MonoBehaviour {
         {
             Warnning.enabled = true;
             Warnning.GetComponent<Animator>().SetBool("Warn", true);
+        }
+        if (Boss.transform.position.y - Player.transform.position.y < Constant.RECOGNIZED_PLAYER - 3f)
+        {
+            if (Boss.GetComponent<Enemy_Info>().HP > 0)
+            {
+                Boss.GetComponent<Enemy_Info>().FireEnabled = true;
+            }
+            GameObject.Find(Constant.NAME_PLAYER).GetComponent<Auto_Move>().AutoCheck = false;
+        }
+        if (Player_Data.HP <= 0)
+        {
+            Boss.GetComponent<Enemy_Info>().FireEnabled = false;
+            Boss.GetComponent<Enemy_Info>().FireState = false;
         }
     }
 

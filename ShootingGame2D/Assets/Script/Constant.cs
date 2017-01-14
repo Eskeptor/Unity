@@ -1,7 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
-
-// Constant Class
+﻿
+/* 상수를 정의해놓은 클래스 */
 static class Constant
 {
     public const float RECOGNIZED_PLAYER = 10f;
@@ -19,6 +17,8 @@ static class Constant
     public const int PLAYER_CSV_DAMAGE = 1;
     public const int PLAYER_CSV_FIRERATE = 2;
     public const int PLAYER_CSV_HP = 3;
+    public const float PLAYER_ENABLED_X = 3.05f;
+    public const float PLAYER_ENABLED_Y_DOWN = 1f;
 
     public const int LEVEL_CSV_XPOS = 0;
     public const int LEVEL_CSV_YPOS = 1;

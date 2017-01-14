@@ -3,35 +3,36 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-// AppHelper class by Unity Community
+// "AppHelper 클래스" by Unity Community
 // http://answers.unity3d.com/questions/161858/startstop-playmode-from-editor-script.html
 
 // Support Event List
 // https://docs.unity3d.com/Manual/SupportedEvents.html
 
-public class SceneChange : MonoBehaviour {
+public class SceneChange : MonoBehaviour
+{
     /* Public Object */
-    public Animator HowToAni;              // HowToPlay animator
-    public Animator CharactorSelectAni;    // CharactorSelect animator
-    public GameObject CharactorSelect;            // Text group
-    public Image[] PlayerTypes;
+    public Animator HowToAni;              // HowToPlay 애니메이터와 연결
+    public Animator CharactorSelectAni;    // CharactorSelect 애니메이터와 연결
+    public GameObject CharactorSelect;     // Text 그룹과 연결
+    public Image[] PlayerTypes;            // 플레이어 타입 이미지 배열
 
     /* Private Object */
-    private TextAsset PlayerCSV;            // for CSV -> Text
-    private string[] PlayerDataCSV;         // converted data(using PlayerCSV)
-    private string[][] PlayerDataCSV_Spec;  // converted and split data(using PlayerDataCSV)
+    private TextAsset PlayerCSV;            // CSV -> Text 변환을 위한 텍스트에셋
+    private string[] PlayerDataCSV;         // PlayerCSV를 사용하여 변환한 1차적 가로 데이터
+    private string[][] PlayerDataCSV_Spec;  // PlayerDataCSV를 사용하여 변환한 2차적 세부 데이터
 
     void Start()
     {
-        PlayerCSV = Resources.Load("PlayerCSV", typeof(TextAsset)) as TextAsset;    // for CSV -> Text
-        PlayerDataCSV = PlayerCSV.text.Split('\n');                     // converted data(using PlayerCSV(split '\n'))
-        PlayerDataCSV_Spec = new string[PlayerDataCSV.Length - 1][];    // initialization array(allocation size by PlayerDataCSV)
+        PlayerCSV = Resources.Load("PlayerCSV", typeof(TextAsset)) as TextAsset;    // CSV -> Text
+        PlayerDataCSV = PlayerCSV.text.Split('\n');                     
+        PlayerDataCSV_Spec = new string[PlayerDataCSV.Length - 1][];   
         for (int i = 1; i < PlayerDataCSV.Length; i++)
         {
-            PlayerDataCSV_Spec[i - 1] = PlayerDataCSV[i].Split(',');    // converted data(using PlayerDataCSV(split ','))
+            PlayerDataCSV_Spec[i - 1] = PlayerDataCSV[i].Split(',');    
         }
 
-        Screen.SetResolution(400, 600, false);      // Screen set resolution
+        Screen.SetResolution(400, 600, false);      // 화면 크기고정
         HowToAni.SetBool("CloseDown", false);
         HowToAni.SetBool("ButtonDown", false);
     }
@@ -40,6 +41,7 @@ public class SceneChange : MonoBehaviour {
     {
         CharactorSelectAni.SetBool("gameStart", true);
     }
+
     public void GameStartType1()
     {
         if (PlayerInit(1))
@@ -51,6 +53,7 @@ public class SceneChange : MonoBehaviour {
             Debug.Log("PlayerInit Error");
         }
     }
+
     public void GameStartType2()
     {
         if (PlayerInit(2))
@@ -62,10 +65,12 @@ public class SceneChange : MonoBehaviour {
             Debug.Log("PlayerInit Error");
         }
     }
+
     public void GameStartClose()
     {
         CharactorSelectAni.SetBool("gameStart", false);
     }
+
     public void GameStartMouseOver(int num)
     {
         CharactorSelect.transform.Find("Texts").Find("MissileType").GetComponent<Text>().text = "미사일 타입 : " + PlayerDataCSV_Spec[num - 1][Constant.PLAYER_CSV_TYPE];
@@ -75,6 +80,7 @@ public class SceneChange : MonoBehaviour {
         CharactorSelect.transform.Find("Airplane").GetComponent<Image>().sprite = PlayerTypes[num - 1].sprite;
         CharactorSelect.transform.Find("Airplane").GetComponent<Image>().color = new Color(255, 255, 255, 255);
     }
+
     public void GameStartMouseRealease()
     {
         CharactorSelect.transform.Find("Texts").Find("MissileType").GetComponent<Text>().text = "미사일 타입 : ";
@@ -126,7 +132,7 @@ public class SceneChange : MonoBehaviour {
     }
 }
 
-// This class is to terminate the Unity Program
+/* 유니티 종료 클래스(타입에 따라서 다름) */
 public static class AppHelper
 {
 #if UNITY_WEBPLAYER

@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Editor_CameraMove : MonoBehaviour {
+public class Editor_CameraMove : MonoBehaviour
+{
     public float MoveSpeed = 3f;
 
     private Vector2 MaxPos;

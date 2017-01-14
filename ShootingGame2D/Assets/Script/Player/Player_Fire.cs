@@ -2,47 +2,38 @@
 using System.Collections;
 
 public class Player_Fire : MonoBehaviour {
-    /* Public Object */
-    public int MissileMaximumPool = 20;             // Player's missile memory maximum pool
-    public Transform RightMissileLocation;          // Player's missile fire location
-    public Transform LeftMissileLocation;           // Player's missile fire location
-    public AudioSource MissileSound;                // Player's missile fire sound
-    public GameObject MissileObject;                // Player's missile object
+    /* Public Objects */
+    public int MissileMaximumPool = 20;             // 플레이어의 미사일 최대개수
+    public Transform RightMissileLocation;          // 플레이어의 미사일 발사 지점(오른쪽)
+    public Transform LeftMissileLocation;           // 플레이어의 미사일 발사 지점(왼쪽)
+    public AudioSource MissileSound;                // 플레이어 미사일 발사 효과음
+    public GameObject MissileObject;                // 플레이어 미사일 오브젝트
 
-    /* Private Object */
-    private bool FireState;                         // for Control fire cycle;
-    private bool DeadCheck;                         // Player Dead Check
-    private MemoryPool MPool = new MemoryPool();    // for Player's missile memory pool
-    private GameObject[] MissileLeft;               // for Player's missile
-    private GameObject[] MissileRight;
+    /* Private Objects */
+    private bool FireState;                         // 미사일 발사 속도 제어
+    private bool DeadCheck;                         // 플레이어의 데스체크
+    private MemoryPool MPool = new MemoryPool();    // 플레이어 미사일 메모리풀
+    private GameObject[] MissileLeft;               // 플레이어의 왼쪽 미사일
+    private GameObject[] MissileRight;              // 플레이어의 오른쪽 미사일
 
-    // When application quit, Memory clear
     void OnApplicationQuit ()
     {
         MPool.Dispose();
     }
 
-	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
         FireState = true;
         DeadCheck = IsDead();
 
-        // Create Missile
+        /* 미사일 생성 */
         MPool.Create(MissileObject, MissileMaximumPool);
         MissileLeft = new GameObject[MissileMaximumPool / 2];
         MissileRight = new GameObject[MissileMaximumPool / 2];
 
-        // All missile array initialize
-        for (int i = 0; i < MissileMaximumPool / 2; i++)
-        {
-            MissileLeft[i] = null;
-            MissileRight[i] = null;
-        }
-
         MissileSound.Stop();
     }
 	
-	// Update is called once per frame
 	void Update () {
         DeadCheck = IsDead();
         if (!DeadCheck)
@@ -60,10 +51,10 @@ public class Player_Fire : MonoBehaviour {
         {
             if (Input.GetButton("Fire1"))
             {
-                // Fire Cycle Control
-                Invoke("FireCycleControl", Player_Data.FireRate);
+                // 미사일 발사 속도 제어
+                StartCoroutine(FireCycleControl());
 
-                // Missile enable from memory pool
+                // 미사일 메모리풀에서 냠냠
                 for(int i = 0; i < MissileMaximumPool / 2; i++)
                 {
                     if (MissileLeft[i] == null && MissileRight[i] == null)
@@ -75,18 +66,15 @@ public class Player_Fire : MonoBehaviour {
                         break;
                     }
                 }
-                FireState = false;
                 MissileSound.Play();
             }
         }
 
-        // Missile return to memory pool
+        // 미사일 메모리풀로 되돌려보내기
         for(int i = 0; i < MissileMaximumPool / 2; i++)
         {
-            // When left missile is enabled
             if (MissileLeft[i])
             {
-                // When missile hit something(The missile hits are Collider disabled)
                 if (MissileLeft[i].GetComponent<Collider2D>().enabled == false)
                 {
                     MissileLeft[i].GetComponent<Collider2D>().enabled = true;
@@ -94,10 +82,8 @@ public class Player_Fire : MonoBehaviour {
                     MissileLeft[i] = null;
                 }
             }
-            // When right missile is enabled
             if (MissileRight[i])
             {
-                // When missile hit something(The missile hits are Collider disabled)
                 if (MissileRight[i].GetComponent<Collider2D>().enabled == false)
                 {
                     MissileRight[i].GetComponent<Collider2D>().enabled = true;
@@ -116,8 +102,10 @@ public class Player_Fire : MonoBehaviour {
     }
 
     // Fire Cycle Control
-    private void FireCycleControl ()
+    IEnumerator FireCycleControl()
     {
+        FireState = false;
+        yield return new WaitForSeconds(Player_Data.FireRate);
         FireState = true;
     }
 }

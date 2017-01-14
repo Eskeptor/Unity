@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Editor_CreateOBJ : MonoBehaviour {
+public class Editor_CreateOBJ : MonoBehaviour
+{
     public GameObject[] Enemys;
 
     private GameObject Enemy;

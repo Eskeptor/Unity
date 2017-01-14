@@ -1,18 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Enemy_AutoMove : MonoBehaviour {
+public class Enemy_AutoMove : MonoBehaviour
+{
     public byte MoveType = 1;
 
     private GameObject DownShift;
 
-    // Use this for initialization
-    void Start () {
+    void Start ()
+    {
         DownShift = GameObject.Find("DownShift");
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+	void Update ()
+    {
         DistanceChecker();
 	}
 

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
-public class Boss_Level2 : MonoBehaviour {
+public class Boss_Level2 : MonoBehaviour
+{
     /* Public Object */
     public GameObject Explosion1;               // Explosion object(When the boss1 died)
     public GameObject Explosion2;
@@ -22,9 +23,6 @@ public class Boss_Level2 : MonoBehaviour {
     public float FireRateTime = 1f;            // Boss2's missile fire rate time
 
     /* Private Object */
-    private bool FireEnabled;                       // By measuring the distance to fire a missile
-    private bool FireState;                         // for Fire cycle control
-    private bool Score;                             // Check whether boss gave the score
     private GameObject EventSP;                     // for Event_ScoreHP
     private GameObject DownShift;                   // for Player's DownShift
     private MemoryPool MPool1 = new MemoryPool();   // for Boss2's missile memory pool
@@ -64,18 +62,17 @@ public class Boss_Level2 : MonoBehaviour {
         Missile4 = new GameObject[4];
         //HMissile = HiddenMissileObject;
 
-        Score = false;
-        FireState = true;
-        FireEnabled = false;
+        GetComponent<Enemy_Info>().ScoreCheck = false;
+        GetComponent<Enemy_Info>().FireState = true;
+        GetComponent<Enemy_Info>().FireEnabled = false;
         Pattern = 1;
         SemiPattern = 0;
     }
 	
 	// Update is called once per frame
 	void Update () {
-        DistanceChecker();
         IsDead();
-        if (FireEnabled)
+        if (GetComponent<Enemy_Info>().FireEnabled)
         {
             MissileFire();
         }
@@ -142,13 +139,13 @@ public class Boss_Level2 : MonoBehaviour {
     {
         if (GetComponent<Enemy_Info>().HP <= 0)
         {
-            if (!Score)
+            if (!GetComponent<Enemy_Info>().ScoreCheck)
             {
-                FireEnabled = false;
+                GetComponent<Enemy_Info>().FireEnabled = false;
                 GetComponent<Enemy_Info>().HP = 0;
                 EventSP.GetComponent<Event_ScoreHP>().AddScore(GetComponent<Enemy_Info>().Score);
                 GetComponent<AudioSource>().Play();
-                Score = true;
+                GetComponent<Enemy_Info>().ScoreCheck = true;
             }
             Explosion1.SetActive(true);
             Explosion2.SetActive(true);
@@ -158,30 +155,12 @@ public class Boss_Level2 : MonoBehaviour {
         }
     }
 
-    // Distance check between player and enemy
-    void DistanceChecker()
-    {
-        if(transform.position.y-DownShift.transform.position.y < Constant.RECOGNIZED_PLAYER - 2f)
-        {
-            if(GetComponent<Enemy_Info>().HP > 0)
-            {
-                FireEnabled = true;
-            }
-            GameObject.Find(Constant.NAME_PLAYER).GetComponent<Auto_Move>().AutoCheck = false;
-        }
-        if(Player_Data.HP <= 0)
-        {
-            FireState = false;
-            FireEnabled = false;
-        }
-    }
-
     // Missile fire
     void MissileFire()
     {
-        if (FireEnabled)
+        if (GetComponent<Enemy_Info>().FireEnabled)
         {
-            if (FireState)
+            if (GetComponent<Enemy_Info>().FireState)
             {
                 //Debug.Log("SemiPattern : " + SemiPattern);
                 //Debug.Log("Pattern : " + Pattern);
@@ -206,7 +185,7 @@ public class Boss_Level2 : MonoBehaviour {
                                 Missile1[SemiPattern * MissileMaximumPool + 4].transform.position = MissileLocation5.transform.position;
                                 Missile1[SemiPattern * MissileMaximumPool + 5].transform.position = MissileLocation6.transform.position;
                             }
-                            FireState = false;
+                            GetComponent<Enemy_Info>().FireState = false;
                             Pattern = 2;
                             break;
                         }
@@ -228,7 +207,7 @@ public class Boss_Level2 : MonoBehaviour {
                                 Missile2[SemiPattern * MissileMaximumPool + 4].transform.position = MissileLocation5.transform.position;
                                 Missile2[SemiPattern * MissileMaximumPool + 5].transform.position = MissileLocation6.transform.position;
                             }
-                            FireState = false;
+                            GetComponent<Enemy_Info>().FireState = false;
                             if (SemiPattern < 5)
                             {
                                 SemiPattern++;
@@ -287,7 +266,7 @@ public class Boss_Level2 : MonoBehaviour {
                                     }
                             }
 
-                            FireState = false;
+                            GetComponent<Enemy_Info>().FireState = false;
                             if (SemiPattern < 2)
                             {
                                 SemiPattern++;
@@ -331,7 +310,7 @@ public class Boss_Level2 : MonoBehaviour {
                                         break;
                                     }
                             }
-                            FireState = false;
+                            GetComponent<Enemy_Info>().FireState = false;
                             if (SemiPattern < 1)
                             {
                                 SemiPattern++;
@@ -400,7 +379,7 @@ public class Boss_Level2 : MonoBehaviour {
     // Fire Cycle Control
     private void FireCycleControl()
     {
-        FireState = true;
+        GetComponent<Enemy_Info>().FireState = true;
         if(Pattern >= 5)
         {
             Pattern = 1;

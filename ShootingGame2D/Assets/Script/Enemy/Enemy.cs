@@ -1,58 +1,52 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
-public class Enemy : MonoBehaviour {
+public class Enemy : MonoBehaviour
+{
     /* Public Object */
-    public GameObject Explosion;        // Explosion object(When the enemy died)
-    public GameObject MissileObject;    // Enemy's missile object
-    public Transform MissileLocation;   // Enemy's missile fire location
-    public int MissileMaximumPool = 5;  // Enemy's missile memory maximum pool
-    public float FireRateTime = 1f;    // Enemy's missile fire rate time
-    [HideInInspector]
-    public byte HP;
-    [HideInInspector]
-    public int Score;
+    public GameObject Explosion;        // 폭팔효과 오브젝트(플레이어에게 죽었을 때)
+    public GameObject MissileObject;    // 미사일 오브젝트
+    public Transform MissileLocation;   // 미사일이 발사될 지점
+    public int MissileMaximumPool = 5;  // 미사일 오브젝트의 최대 개수
+    public float FireRateTime = 1f;     // 미사일이 발사되는 속도
 
     /* Private Object */
-    private bool FireEnabled;                       // By measuring the distance to fire a missile
-    private bool FireState;                         // for Fire cycle control
-    private bool ScoreCheck;                        // Check whether boss gave the score
-    private GameObject EventSP;                     // for Event_ScoreHP
-    private GameObject DownShift;                   // for Player's DownShift
-    private MemoryPool MPool = new MemoryPool();    // for Enemy's missile memory pool
-    private GameObject[] Missile;                   // for Enemy's missile
+    private GameObject EventSP;                     // Event_ScoreHP와 연결
+    private GameObject DownShift;                   // 플레이어에 붙어있는 "DownShift"와 연결
+    private MemoryPool MPool = new MemoryPool();    // 미사일 오브젝트의 메모리풀
+    private GameObject[] Missile;                   // 미사일 오브젝트를 생성할 배열
 
-    // When application quit, Memory clear
+    /* 어플리케이션이 종료될 때 자동으로 실행 */
     void OnApplicationQuit()
     {
         MPool.Dispose();
     }
 
-    // Use this for initialization
-    void Start () {
+    void Start ()
+    {
         EventSP = GameObject.Find("Player Event");
         DownShift = GameObject.Find("DownShift");
 
-        // Create Missile
-        MPool.Create(MissileObject, MissileMaximumPool);
-        Missile = new GameObject[MissileMaximumPool];
+        MPool.Create(MissileObject, MissileMaximumPool);    // 미사일 오브젝트를 메모리풀에 등록
+        Missile = new GameObject[MissileMaximumPool];       // 미사일 오브젝트를 배열에 생성  
 
-        FireState = true;
-        FireEnabled = false;
-        ScoreCheck = false;
+        GetComponent<Enemy_Info>().FireState = true;
+        GetComponent<Enemy_Info>().FireEnabled = false;
+        GetComponent<Enemy_Info>().ScoreCheck = false;
         GetComponent<AudioSource>().Stop();
     }
 	
-	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
         IsDead();
         DistanceChecker();
-        if (FireEnabled)
+        if (GetComponent<Enemy_Info>().FireEnabled)
         {
             MissileFire();
         }
 	}
 
-    // for Collision check
+    /* 충돌 체크를 위한 함수 */
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.GetComponent<Collider2D>().CompareTag(Constant.TAG_PLAYER))
@@ -62,7 +56,6 @@ public class Enemy : MonoBehaviour {
             {
                 GetComponent<Enemy_Info>().HP = 0;
             }
-            //Debug.Log("Enemy_Move : 플레이어와 부딛힘");
         }
         else if (col.GetComponent<Collider2D>().CompareTag(Constant.TAG_PLAYER_MISSILE))
         {
@@ -71,18 +64,98 @@ public class Enemy : MonoBehaviour {
             {
                 GetComponent<Enemy_Info>().HP = 0;
             }
-            //Debug.Log("Enemy_Move : 미사일과 부딛힘");
         }
     }
 
-    // When enemy is down, deactivate object(not destroy)
-    void Dead()
+    /* 죽었는가 안죽었는가 자기 자신을 체크 */
+    void IsDead()
     {
+        if (GetComponent<Enemy_Info>().HP == 0)
+        {
+            if (!GetComponent<Enemy_Info>().ScoreCheck)
+            {
+                GetComponent<Collider2D>().enabled = false;
+                GetComponent<Enemy_Info>().FireEnabled = false;
+                GetComponent<AudioSource>().Play();
+                EventSP.GetComponent<Event_ScoreHP>().AddScore(GetComponent<Enemy_Info>().Score);
+                GetComponent<Enemy_Info>().ScoreCheck = true;
+            }
+            Explosion.SetActive(true);
+            StartCoroutine(Dead(1f));
+        }
+    }
+
+    /* 플레이어와 적(자기자신)과의 거리를 측정 */
+    void DistanceChecker()
+    {
+        if (transform.position.y - DownShift.transform.position.y < Constant.RECOGNIZED_PLAYER)
+        {
+            if(GetComponent<Enemy_Info>().HP != 0 && Player_Data.HP != 0)
+            {
+                GetComponent<Enemy_Info>().FireEnabled = true;
+            }
+            else
+            {
+                GetComponent<Enemy_Info>().FireEnabled = false;
+            }
+        }
+        if (transform.position.y - DownShift.transform.position.y == Constant.DISTROY_DISTANCE_Y || transform.position.x - DownShift.transform.position.x >= Constant.DISTROY_DISTANCE_X || transform.position.x - DownShift.transform.position.x <= -Constant.DISTROY_DISTANCE_X)
+        {
+            StartCoroutine(Dead(0f));
+        }
+    }
+
+    /* 미사일 발사 */
+    void MissileFire()
+    {
+        if (GetComponent<Enemy_Info>().FireState)
+        {
+            StartCoroutine(FireCycleControl());
+            for(int i = 0; i < MissileMaximumPool; i++)
+            {
+                if (Missile[i] == null)
+                {
+                    Missile[i] = MPool.NewItem();
+                    Missile[i].GetComponent<Enemy_Missile>().Damage = GetComponent<Enemy_Info>().Damage;
+                    Missile[i].transform.position = MissileLocation.transform.position;
+                    
+                    break;
+                }
+            }
+        }
+
+        /* 미사일을 다시 메모리풀로 돌려보냄 */
         for (int i = 0; i < MissileMaximumPool; i++)
         {
             if (Missile[i])
             {
                 if(Missile[i].GetComponent<Collider2D>().enabled == false)
+                {
+                    Missile[i].GetComponent<Collider2D>().enabled = true;
+                    MPool.RemoveItem(Missile[i]);
+                    Missile[i] = null;
+                }
+            }
+        }
+    }
+
+    /* 미사일 발사 제어를 위한 함수 */
+    IEnumerator FireCycleControl()
+    {
+        GetComponent<Enemy_Info>().FireState = false;
+        yield return new WaitForSeconds(FireRateTime);
+        GetComponent<Enemy_Info>().FireState = true;
+    }
+
+    /* 적(자기자신)이 죽었을 때, 비활성화 */
+    IEnumerator Dead(float time)
+    {
+        yield return new WaitForSeconds(time);
+        for (int i = 0; i < MissileMaximumPool; i++)
+        {
+            if (Missile[i])
+            {
+                if (Missile[i].GetComponent<Collider2D>().enabled == false)
                 {
                     Missile[i].GetComponent<Collider2D>().enabled = true;
                     MPool.RemoveItem(Missile[i]);
@@ -91,85 +164,5 @@ public class Enemy : MonoBehaviour {
             }
         }
         gameObject.SetActive(false);
-    }
-
-    // Dead checker
-    void IsDead()
-    {
-        if (GetComponent<Enemy_Info>().HP == 0)
-        {
-            if (!ScoreCheck)
-            {
-                FireEnabled = false;
-                GetComponent<AudioSource>().Play();
-                EventSP.GetComponent<Event_ScoreHP>().AddScore(GetComponent<Enemy_Info>().Score);
-                ScoreCheck = true;
-            }
-            Explosion.SetActive(true);
-            Invoke("Dead", 1f);
-        }
-    }
-
-    // Distance check between player and enemy
-    void DistanceChecker()
-    {
-        if (transform.position.y - DownShift.transform.position.y < Constant.RECOGNIZED_PLAYER)
-        {
-            if(GetComponent<Enemy_Info>().HP != 0 && Player_Data.HP != 0)
-            {
-                FireEnabled = true;
-            }
-            else
-            {
-                FireEnabled = false;
-            }
-        }
-        if (transform.position.y - DownShift.transform.position.y == Constant.DISTROY_DISTANCE_Y || transform.position.x - DownShift.transform.position.x >= Constant.DISTROY_DISTANCE_X || transform.position.x - DownShift.transform.position.x <= -Constant.DISTROY_DISTANCE_X)
-        {
-            Dead();
-        }
-        //if (Player_Data.HP == 0)
-        //{
-        //    FireEnabled = false;
-        //}
-    }
-
-    // Missile fire
-    void MissileFire()
-    {
-        if (FireState)
-        {
-            Invoke("FireCycleControl", FireRateTime);
-            for(int i = 0; i < MissileMaximumPool; i++)
-            {
-                if (Missile[i] == null)
-                {
-                    Missile[i] = MPool.NewItem();
-                    Missile[i].transform.position = MissileLocation.transform.position;
-                    break;
-                }
-            }
-            FireState = false;
-        }
-
-        // Returns missiles in memory pool
-        for (int i = 0; i < MissileMaximumPool; i++)
-        {
-            if (Missile[i])
-            {
-                if(Missile[i].GetComponent<Collider2D>().enabled == false)
-                {
-                    Missile[i].GetComponent<Collider2D>().enabled = true;
-                    MPool.RemoveItem(Missile[i]);
-                    Missile[i] = null;
-                }
-            }
-        }
-    }
-
-    // Fire Cycle Control
-    private void FireCycleControl()
-    {
-        FireState = true;
     }
 }
