@@ -1,3 +1,8 @@
+## Update 2016.12.22
+```
+ 1) Implement game level editor(Possible in developer mode only)
+ 2) Optimize some codes(divided properly)
+```
 ## Update 2016.12.21
 ```
  1) Fix Level3 Boss pattern
